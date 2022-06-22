@@ -1,0 +1,38 @@
+<ng-container *ngFor="let order of orderList; let i = index">{{order.name}}
+</ng-container>
+
+
+<!-- <mat-card>
+    <div class="view-container">
+        <b><span class="title-product">Detail Customer:</span></b>
+        <ng-container *ngFor="let item of orderList; let i = index">
+            <div class="product-view-content">
+                <div class="product-detail-section">
+                    <p class="product-name">{{item.name}}</p>
+                    <p class="product-name">{{item.email}}</p>
+                    <p class="product-name">{{item.contactNumber}}</p>
+                    <p class="product-name">{{item.address}}</p>
+                    <p class="product-name">{{item.paymentMethod}}</p>
+                    <p class="product-name">{{item.shipping_option}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <hr>
+    <div class="product-view-container">
+        <b><span class="title-product">Product:</span></b>
+        <ng-container *ngFor="let item of orderList; let i = index">
+            <div class="product-view-content">
+                <div>{{i+1}}.</div>
+                <div class="img-section">
+                    <img width="100px" height="100px" src="{{item.detail_product.image}}" alt="" />
+                </div>
+                <div class="product-detail-section">
+                    <p class="product-name">{{item.product.name}} | {{item.itemSize}}</p>
+                    <p class="product-price">{{item.detail_product.price | currency:"IDR ":"symbol"}} x {{item.orderCart.quantity}}</p>
+                    <p class="product-description">{{item.orderCart.total | currency:"IDR ":"symbol"}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</mat-card> -->

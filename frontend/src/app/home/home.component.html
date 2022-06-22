@@ -1,0 +1,23 @@
+<div class="bg-image"></div>
+<app-best-seller></app-best-seller>
+
+<div class="wrapper sticky">
+  <nav class="navbar-fixed-top">
+    <a href="#" class="logo">
+      <mat-icon>store</mat-icon>
+      <strong>  Beauty Shop</strong> 
+    </a>
+    <ul>
+        
+        <li><a (click)="cartAction()"><mat-icon matBadge="{{totalItem}}" matBadgeColor="primary">shopping_basket</mat-icon></a></li>
+        <li><a (click)="shipAction()"><mat-icon>local_shipping</mat-icon></a></li>
+        <li><a (click)="loginAction()">Login</a></li>
+        <li><a (click)="signupAction()">Signup</a></li>
+        <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+        
+    </ul>
+  </nav>
+</div>
+<div class="footer" id="signup">
+  <h2></h2>
+</div>

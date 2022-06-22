@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            table{
+                font-family: Arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td,th{
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+
+    <body style="padding:1rem;">
+        <div style="padding:1rem;border:2px solid #333;border-radius: 5px;">
+        <h3 style="text-align:center;">Beauty Shop</h3>
+        <table>
+            <tr>
+                <th>Name: <%= name %></th>
+                <th>Contact Number: <%= contactnumber %></th>
+            </tr>
+            <tr>
+                <th>Email: <%= email %></th>
+                <th>Payment Method: <%= paymentmethod %></th>
+            </tr>
+        </table>
+        <h3>Product Details:</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Sub Total</th>
+            </tr>
+            <% if(productDetails.length > 0) { %>
+                <% productDetails.forEach(product => { %>
+                    <tr>
+                        <td><%= product.category %></td>
+                        <td><%= product.product %></td>
+                        <td><%= product.item %></td>
+                        <td><%= product.quantity %></td>
+                        <td>Rp<%= product.price %>.000</td>
+                        <td>Rp<%= product.total %>.000</td>
+                    </tr>
+                <% }); %>
+            <% }; %>
+        </table>
+        <h3>Total : Rp<%= totalAmount %>.000</h3>
+        <h3>Thank you for visiting</h3>
+        <h4>Maria Eunike</h4>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<div class="wrapper sticky">
+  <nav class="navbar-fixed-top">
+    <a href="#" class="logo">
+      <mat-icon>store</mat-icon> Beauty Shop
+    </a>
+    <ul>
+        <li><a (click)="cartAction()"><mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon></a></li>
+        <li><a (click)="shipAction()"><mat-icon>local_shipping</mat-icon></a></li>
+        <li><a (click)="loginAction()">Login</a></li>
+        <li><a (click)="signupAction()">Signup</a></li>
+        <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="product-view-container">
+    <ng-container>
+        <div class="product-view-content">
+            <div class="img-section">
+                <img src="{{singleProduct?.productImage}}" alt=""  />
+            </div>
+            <div class="product-detail-section">
+                <p class="product-name">{{singleProduct?.productName}}</p>
+                <p class="product-description">{{singleProduct?.description}}</p>
+                <p class="product-price">{{singleProduct?.itemPrice | currency:"IDR ":"symbol"}}</p>
+                <select  (change)="onChange($event)" [(ngModel)]="selectedValue">
+                    <option selected disabled hidden value="">Select Size</option>
+                    <option *ngFor="let opsi of detailProduct" [ngValue]="opsi">{{opsi.item}}</option>
+                </select>
+                <div class="image-item">
+                <img src="{{singleProduct?.image}}" alt=""  /></div>
+                <div class="btn-add-cart" (click)="handleAddToCart()">Add to Cart</div>
+            </div>
+        </div>
+        <!-- <h4>{{item.item}}</h4>
+        <img class="rounded-circle img-fluid" src="{{item.image}}" alt=""  />
+        <h6> <img width="30" height="25" src="" alt="" />   {{item.productName}}</h6>
+        <p class="text-muted">{{item.description}}</p>
+        <h6> Rp{{item.price}}.000</h6> -->
+    </ng-container>
+</div>
+
+
+<!-- <section class="page-section" id="about">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">PAYDAY PROMO</h2><br>
+        </div>
+        <ng-container *ngFor="let item of detailProduct; let i = index">
+            <ul class="timeline">
+                routerLink="/detail/getProductsItem"
+                <li [class]="{'timeline-inverted': !(i%2)}">
+                    <div class="timeline-image" ><img class="rounded-circle img-fluid" src="{{item.image}}" alt=""  />
+                    </div>
+                    
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4> {{item.item}}</h4>
+                            <h6> <img width="30" height="25" src="{{item.productImage}}" alt="" />   {{item.productName}}</h6>
+                            <img src="{{item.categoryIcon}}" alt="" /> 
+                            
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">{{item.description}}</p>
+                            <h6> Rp{{item.price}}.000</h6>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img class="rounded-circle img-fluid" src="{{item.categoryIcon}}" alt="" />
+                </li>
+            </ul>
+            
+        </ng-container>
+    </div>
+</section> -->

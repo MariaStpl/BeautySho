@@ -1,0 +1,171 @@
+<div class="wrapper sticky">
+    <nav class="navbar-fixed-top">
+        <a href="#" class="logo">
+            <mat-icon>store</mat-icon>
+            <strong> Beauty Shop</strong>
+        </a>
+        <ul>
+            <li><a (click)="shipAction()"><mat-icon>local_shipping</mat-icon></a></li>
+            <li><a (click)="loginAction()">Login</a></li>
+            <li><a (click)="signupAction()">Signup</a></li>
+            <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+
+        </ul>
+    </nav>
+</div>
+
+<ng-container *ngIf="cartList.length > 0">
+    <div class="responsive_table">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="no">
+                <th mat-header-cell *matHeaderCellDef>No</th>
+                <td mat-cell *matCellDef="let element; let i = index">{{i+1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="productName">
+                <th mat-header-cell *matHeaderCellDef>Product Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.productName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="itemImage">
+                <th mat-header-cell *matHeaderCellDef>Image</th>
+                <td mat-cell *matCellDef="let element"><img [src]="element.itemImage" width="200" height="200"></td>
+            </ng-container>
+            <ng-container matColumnDef="itemDesc">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.itemDesc}}</td>
+            </ng-container>
+            <ng-container matColumnDef="itemSize">
+                <th mat-header-cell *matHeaderCellDef>Size</th>
+                <td mat-cell *matCellDef="let element"> {{element.itemSize}}</td>
+            </ng-container>
+            <ng-container matColumnDef="itemPrice">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element"> {{element.itemPrice | currency:"IDR ":"symbol"}}</td>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                <td mat-cell *matCellDef="let element; let id = index">
+                    <!-- <button class="btn-minus" (click)="minus(element.quantity)">-</button>
+                    <input type="number" value="{{element.quantity}}">
+                    <button class="btn-plus" (click)="plus(element.quantity)">-</button> -->
+                    <input class="qty" type="number" min="1" class="input" [value]="element.quantity"
+                        (click)="validateInput($event,element.id)">
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="subtotal">
+                <th mat-header-cell *matHeaderCellDef>Sub Total</th>
+                <td mat-cell *matCellDef="let element">{{element.total |currency:"IDR ":"symbol"}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;columns:displayedColumns"></tr>
+        </table>
+    </div>
+    <mat-card class="card1">
+        <div class="total"><span class="float-right">Total : {{data?.sumVal |currency:"IDR ":"symbol"}}</span></div><br>
+        <div>
+            <button mat-flat-button color="primary" class="float-right" (click)="checkoutCart()">Checkout</button>
+            <button mat-flat-button color="primary" class="float-right" routerLink="">Shop More</button>
+            <button mat-flat-button color="primary" class="float-right" (click)="emptyCart()">Empty Cart</button>
+        </div>
+    </mat-card>
+    <hr>
+</ng-container>
+
+
+
+<ng-container *ngIf="cartList.length < 1">
+    <div class="container">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="assets/img/empty-cart.png" alt="">
+                <h6>Your cart is empty</h6>
+                <h4>Add item to it now !</h4>
+                <button mat-raised-button color="primary" routerLink="">Shop Now</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</ng-container>
+<!-- <div class="container">
+    <div class="card-table">
+        <div class="cart-product">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Description</th>
+                        <th>Size</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of cartList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{element.productName}}</td>
+                        <td><img style="width: 120px;" src="{{element?.itemImage}}" alt=""></td>
+                        <td style="width: 25%;">{{element?.itemDesc}}</td>
+                        <td style="width: 25%;">{{element?.itemSize}}</td>
+                        <th style="width: 12%;">{{element?.itemPrice}}</th>
+                        <td style="width: 12%;">{{element?.quantity}}</td>
+                        <td style="width: 12%;">{{element.itemPrice*element.quantity | currency:"IDR":"symbol"}}</td>
+                        <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
+                        <td><button routerLink="" class="btn btn-primary">Shop More</button></td>
+                        <td><button class="btn btn-success">Checkout</button></td>
+                        <td><strong>Grand Total : ${{grandTotal}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+<!-- </ng-container>
+    <ng-container *ngIf="cartList.length > 0">
+        <div class="cart" *ngFor="let element of cartList; let i = index">
+            <div class="imgbox">
+                <img src="{{element?.itemImage}}" alt=""  />
+            </div>
+            <div class="name">
+                {{element.productName}}
+            </div>
+            <div class="size">
+                {{element.itemSize}}
+            </div>
+            <div class="price">
+                {{element.itemPrice | currency:"IDR":"symbol"}}
+            </div>
+            <div class="desc">
+                {{element.itemDesc}}
+            </div>
+            <div class="qty"><input type="number" [value]="element.quantity" (blur)="validateInput($event,i)">
+                {{element.quantity}}
+            </div>
+            <input type="number" class="qty" [value]="element.quantity">
+            (blur)="validateInput($event, i)">
+            <div class="subtotal">
+                {{element.itemPrice*element.quantity | currency:"IDR":"symbol"}}
+            </div>
+            <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>-->

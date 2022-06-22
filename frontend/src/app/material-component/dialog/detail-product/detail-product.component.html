@@ -1,0 +1,61 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">{{dialogData.action}} Product</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="detailProductForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row-wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Item</mat-label>
+                    <input matInput formControlName="item" required>
+                    <mat-error *ngIf="detailProductForm.controls.item.touched && detailProductForm.controls.item.invalid">
+                        <span *ngIf="detailProductForm.controls.item.errors.required">This Field is mandatory.</span>
+                        <span *ngIf="detailProductForm.controls.item.errors.pattern">This Field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row-wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Price</mat-label>
+                    <input matInput formControlName="price" required>
+                    <mat-error *ngIf="detailProductForm.controls.price.touched && detailProductForm.controls.price.invalid">
+                        <span *ngIf="detailProductForm.controls.price.errors.required">This Field is mandatory.</span>
+                        <span *ngIf="detailProductForm.controls.price.errors.pattern">This Field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Product Name</mat-label>
+                    <mat-select formControlName="productId">
+                        <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row-wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="description" required>
+                    <mat-error
+                        *ngIf="detailProductForm.controls.description.touched && detailProductForm.controls.description.invalid">
+                        <span *ngIf="detailProductForm.controls.description.errors.required">This Field is mandatory.</span>
+                        <span *ngIf="detailProductForm.controls.description.errors.pattern">This Field is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-label>Image</mat-label>
+            <input type="file" formControlName="image" (change)="getFile($event)" #fileUpload>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(detailProductForm.valid && detailProductForm.dirty)">{{action}}</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

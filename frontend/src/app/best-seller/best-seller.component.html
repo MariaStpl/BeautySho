@@ -1,0 +1,33 @@
+<section class="page-section" id="about">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">PAYDAY PROMO</h2><br>
+        </div>
+        <ng-container *ngFor="let item of productList; let i = index">
+            <ul class="timeline">
+                <!-- routerLink="/detail/getProductsItem" -->
+                <li [class]="{'timeline-inverted': !(i%2)}">
+                    <div class="timeline-image" ><img class="rounded-circle img-fluid" src="{{item.image}}" alt="" (click)="ImageClick(item.id)" />
+                    </div>
+                    
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4> {{item.name}}</h4>
+                            <h6> <img width="30" height="25" src="{{item.categoryIcon}}" alt="" />   {{item.categoryName}}</h6>
+                            <!-- <img src="{{item.categoryIcon}}" alt="" /> -->
+                            
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">{{item.description}}</p>
+                            <h6> Rp{{item.price}}.000</h6>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li>
+                    <img class="rounded-circle img-fluid" src="{{item.categoryIcon}}" alt="" />
+                </li> -->
+            </ul>
+            
+        </ng-container>
+    </div>
+</section>
