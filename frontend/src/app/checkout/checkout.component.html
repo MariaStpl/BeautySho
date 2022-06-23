@@ -1,21 +1,26 @@
 <div class="wrapper sticky">
     <nav class="navbar-fixed-top">
-      <a href="#" class="logo">
-        <mat-icon>store</mat-icon> Beauty Shop
-      </a>
-      <ul>
-          <li><a (click)="cartAction()"><mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon></a></li>
-          <li><a (click)="shipAction()"><mat-icon>local_shipping</mat-icon></a></li>
-          <li><a (click)="loginAction()">Login</a></li>
-          <li><a (click)="signupAction()">Signup</a></li>
-          <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
-      </ul>
+        <a href="#" class="logo">
+            <mat-icon>store</mat-icon> Beauty Shop
+        </a>
+        <ul>
+            <li><a (click)="cartAction()">
+                    <mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon>
+                </a></li>
+            <li><a (click)="shipAction()">
+                    <mat-icon>local_shipping</mat-icon>
+                </a></li>
+            <li><a (click)="loginAction()">Login</a></li>
+            <li><a (click)="signupAction()">Signup</a></li>
+            <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+        </ul>
     </nav>
-  </div>
-  <hr>
+</div>
+<hr>
 
 <mat-card class="title">
-    <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"(click)="submitAction()">Place Order</button>
+    <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"
+        (click)="submitAction()">Place Order</button>
     <button mat-flat-button color="primary" (click)="cart()">Back to Cart</button>
 </mat-card>
 <hr>
@@ -57,7 +62,8 @@
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Address</mat-label>
                     <textarea matInput formControlName="address" required></textarea>
-                    <mat-error *ngIf="manageOrderForm.controls.address.touched && manageOrderForm.controls.address.invalid">
+                    <mat-error
+                        *ngIf="manageOrderForm.controls.address.touched && manageOrderForm.controls.address.invalid">
                         <span *ngIf="manageOrderForm.controls.address.errors.required">This field is mandatory</span>
                         <span *ngIf="manageOrderForm.controls.address.errors.pattern">This field is invalid.</span>
                     </mat-error>
@@ -106,21 +112,21 @@
         <b><span class="title-product">Product:</span></b>
         <ng-container *ngFor="let item of cartItem; let i = index">
             <div class="product-view-content">
-            <div>{{i+1}}.</div>
+                <div>{{i+1}}.</div>
                 <div class="img-section">
                     <img width="100px" height="100px" src="{{item.itemImage}}" alt="" />
                 </div>
                 <div class="product-detail-section">
                     <p class="product-name">{{item.productName}} | {{item.itemSize}}</p>
                     <p class="product-price">{{item.itemPrice | currency:"IDR ":"symbol"}} x {{item.quantity}}</p>
-                    <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>                    
+                    <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
                 </div>
             </div>
-            
+
         </ng-container>
-        
+
     </div>
-    
+
 
 
 </div>

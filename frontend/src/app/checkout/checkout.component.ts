@@ -83,7 +83,7 @@ export class CheckoutComponent implements OnInit {
             this.checkoutService.removeAllCart().subscribe((response: any) => {
                 this.cartItem();
             })
-            this.router.navigate(['/order/get'])
+            this.router.navigate(['/order/get/'])
         }, (error: any) => {
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
