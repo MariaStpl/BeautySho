@@ -96,9 +96,14 @@ create table checkout(
     primary key (id)
 );
 
+ALTER TABLE checkout ADD status varchar(50) NOT NULL;
 ALTER TABLE checkout ADD address varchar(500) NOT NULL;
 ALTER TABLE checkout ADD shipping_option varchar(50) NOT NULL;
 alter table cart add createDate timestamp default current_timestamp not null;
 alter table cart add updateDate timestamp default current_timestamp not null;
 ALTER TABLE detail_product ADD productId integer NOT NULL;
 ALTER TABLE orderCart ADD checkoutId integer NOT NULL;
+alter table orderCart add orderTime timestamp default current_timestamp not null;
+alter table orderCart add shipTime timestamp default current_timestamp;
+alter table orderCart add completedTime timestamp default current_timestamp;
+ALTER TABLE orderCart ADD status varchar(50) NOT NULL;

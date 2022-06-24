@@ -3,7 +3,7 @@
         <b><span>Dashboard</span></b>
     </mat-card>
     <br>
-    <div class="row">
+    <div class="">
         <div class="column">
             <div class="card">
                 <div class="container">
@@ -20,6 +20,26 @@
                     <h2 class="title">Total Product:</h2>
                     <h1 class="title">{{data?.product}}</h1>
                     <p><button class="button" [routerLink]="['/beautyshop/product']">View Product</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Total Item Product:</h2>
+                    <h1 class="title">{{data?.item}}</h1>
+                    <p><button class="button" [routerLink]="['/beautyshop/detail']">View Item Product</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <div class="container">
+                    <h2 class="title">Total Orders:</h2>
+                    <h1 class="title">{{data?.orders}}</h1>
+                    <p><button class="button" [routerLink]="['/beautyshop/orders']">View Orders</button></p>
                 </div>
             </div>
         </div>

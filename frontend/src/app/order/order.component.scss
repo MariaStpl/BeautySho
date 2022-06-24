@@ -1,3 +1,43 @@
+
+.card{
+    height: 80vh;
+    margin: 100px;
+    padding: 25px;
+}
+.container{
+    height: auto;
+}
+
+h6{
+    font-weight: 800;
+    font-size: 19px;
+}
+.content{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    text-align: center;
+    img{
+        text-decoration: none;
+        color: inherit;
+        border: none;
+        outline: none;
+        height: 250px;
+        width: 250px;
+        margin: 20px 0px;
+    }
+}
+
+.title-center{
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #f1f1f1;
+    padding-top: 12px;
+
+}
+
 .wrapper {
     height: 65px;
     display: flex;
@@ -160,6 +200,7 @@ mat-card {
 
     mat-card-content {
         display: flex;
+        margin-top: 15px;
     }
 
     .data-view-container {
@@ -201,7 +242,7 @@ mat-card {
             margin-top: 150px;
         }
 
-        .mat-card-content>:last-child:not(.mat-card-footer) {
+        button {
             margin-bottom: 0;
             margin-top: 15px;
         }

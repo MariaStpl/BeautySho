@@ -107,9 +107,11 @@
     </div>
     <hr>
 
-
+    
     <div class="product-view-container">
-        <b><span class="title-product">Product:</span></b>
+        <b><span class="title-product">Product:</span>
+            <button mat-flat-button color="primary" class="float-rightt">Total : {{data?.sumVal |currency:"IDR ":"symbol"}}</button>
+        </b>
         <ng-container *ngFor="let item of cartItem; let i = index">
             <div class="product-view-content">
                 <div>{{i+1}}.</div>
@@ -122,9 +124,7 @@
                     <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
                 </div>
             </div>
-
         </ng-container>
-
     </div>
 
 

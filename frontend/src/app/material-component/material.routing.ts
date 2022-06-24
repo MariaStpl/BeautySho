@@ -7,6 +7,7 @@ import { ManageDetailProductComponent } from './manage-detail-product/manage-det
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { OrdersComponent } from './orders/orders.component';
 import { ViewBillComponent } from './view-bill/view-bill.component';
 
 
@@ -44,6 +45,14 @@ export const MaterialRoutes: Routes = [
         canActivate:[RouteGuardService],
         data:{
             expectedRole:['admin','user']
+        }
+    },
+    {
+        path:'orders',
+        component:OrdersComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['admin']
         }
     },
     {

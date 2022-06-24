@@ -1,85 +1,102 @@
 <div>
-<div class="wrapper sticky">
-    <nav class="navbar-fixed-top">
-        <a href="#" class="logo">
-            <mat-icon>store</mat-icon> Beauty Shop
-        </a>
-        <ul>
-            <li><a (click)="cartAction()">
-                    <mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon>
-                </a></li>
-            <li><a (click)="loginAction()">Login</a></li>
-            <li><a (click)="signupAction()">Signup</a></li>
-            <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
-        </ul>
-    </nav>
-</div>
-<hr>
+    <div class="wrapper sticky">
+        <nav class="navbar-fixed-top">
+            <a href="#" class="logo">
+                <mat-icon>store</mat-icon> Beauty Shop
+            </a>
+            <ul>
+                <li><a (click)="cartAction()">
+                        <mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon>
+                    </a></li>
+                <li><a (click)="loginAction()">Login</a></li>
+                <li><a (click)="signupAction()">Signup</a></li>
+                <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr>
+    <ng-container *ngIf="orderList.length > 0">
+        <mat-card *ngFor="let group of orderList; let i = index">
+            <mat-card-header>
+                <span class="title-center"></span>
+            </mat-card-header>
+            <mat-card-content>
 
-<mat-card *ngFor="let group of orderList; let i = index">
-    <mat-card-header>
-        <h1>To Receive</h1>
-    </mat-card-header>
-    <mat-card-content>
-        
-        <div class="data-view-container">
-            <b><span class="title-data">Customer Detail:</span></b>
-            <div class="data-view-content">
-                <table class="data-detail-section">
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Nama</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.name}}</td>
-                    </tr>
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Email</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.email}}</td>
-                    </tr>
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Contact Number</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.contactNumber}}</td>
-                    </tr>
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Payment Method</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.paymentMethod}}</td>
-                    </tr>
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Address</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.address}}</td>
-                    </tr>
-                    <tr>
-                        <td width="130px" valign="top" class="textt">Shipping Option</td>
-                        <td width="10px">:</td>
-                        <td style="font-weight:bold">{{group.shipping_option}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="product-view-container">
-            <b><span class="title-product">Product:</span></b>
-            <ng-container *ngFor="let item of group.items">
-                <div class="product-view-content">
-                    <div class="img-section">
-                        <img width="70px" height="70px" src="{{item.itemImage}}" alt="" />
-                    </div>
-                    <div class="product-detail-section">
-                        <p class="product-name">{{item.productName}} | {{item.itemSize}}</p>
-                        <p class="product-price">{{item.itemPrice | currency:"IDR ":"symbol"}} x {{item.quantity}}</p>
-                        <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
+                <div class="data-view-container">
+                    <b><span class="title-data">Customer Detail:</span></b>
+                    <div class="data-view-content">
+                        <table class="data-detail-section">
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Nama</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.name}}</td>
+                            </tr>
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Email</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.email}}</td>
+                            </tr>
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Contact Number</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.contactNumber}}</td>
+                            </tr>
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Payment Method</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.paymentMethod}}</td>
+                            </tr>
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Address</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.address}}</td>
+                            </tr>
+                            <tr>
+                                <td width="130px" valign="top" class="textt">Shipping Option</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.shipping_option}}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            </ng-container>
-        </div>
-        <div class="sumval"><button mat-flat-button color="primary">Total : {{data?.sumVal |currency:"IDR ":"symbol"}}</button></div>
-    </mat-card-content>
-</mat-card>
-</div>
+                <div class="product-view-container">
+                    <b><span class="title-product">Product:</span></b>
+                    <ng-container *ngFor="let item of group.items">
+                        <div class="product-view-content">
+                            <div class="img-section">
+                                <img width="70px" height="70px" src="{{item?.itemImage}}" alt="" />
+                            </div>
+                            <div class="product-detail-section">
+                                <p class="product-name">{{item.productName}} | {{item.itemSize}}</p>
+                                <p class="product-price">{{item.itemPrice | currency:"IDR ":"symbol"}} x
+                                    {{item.quantity}}</p>
+                                <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- <ng-container *ngFor="let item of group.items">
+                {{item.status}}
+            </ng-container> -->
+                </div>
+                <!-- <div class="sumval"><button mat-flat-button color="primary">Total : {{item.sumVal |currency:"IDR ":"symbol"}}</button></div> -->
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
 
-<!-- <ul *ngFor="let group of orderList; let i = index">
+    <!-- <ng-container *ngIf="orderList.length < 1">
+        <div class="container">
+            <mat-card class="card">
+                <mat-card-content class="content">
+                    <img src="assets/img/empty-cart.png" alt="">
+                    <h6>Your Order is empty</h6>
+                    <h4>Shopping now !</h4>
+                    <button mat-raised-button color="primary" routerLink="">Shop Now</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container> -->
+
+    <!-- <ul *ngFor="let group of orderList; let i = index">
     <li>{{group.name}}</li>
     <ul>
         <li *ngFor="let item of group.items">
@@ -88,7 +105,7 @@
         </li>
     </ul>
 </ul> -->
-<!-- <mat-card>
+    <!-- <mat-card>
     <div class="view-container">
         <b><span class="title-product">Detail Customer:</span></b>
         <ng-container *ngFor="let item of orderList; let i = index">

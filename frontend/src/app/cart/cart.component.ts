@@ -212,7 +212,7 @@ export class CartComponent implements OnInit {
 
     }
     shipAction() {
-        this.router.navigate(['/order'])
+        this.router.navigate(['/order/get'])
     }
 
 }

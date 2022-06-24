@@ -17,11 +17,11 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/post', (req, res, next) => {
-    var query = "insert into checkout (name,email,contactNumber,paymentMethod,createDate, address, shipping_option) values(?,?,?,?,now(),?,?)";
+    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option) values(?,?,?,?,?,?)";
     let checkout = req.body;
     connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option], (err, results) => {
         console.log(results.insertId);
-        var query = "INSERT INTO orderCart (checkoutId, itemId, productId, quantity, itemPrice, total) SELECT ?, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"
+        var query = "INSERT INTO orderCart (checkoutId, status, orderTime, shipTime, completedTime, itemId, productId, quantity, itemPrice, total) SELECT ?, 'To Ship',now(),NULL,NULL, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"
         connection.query(query, results.insertId, (err, results) => {
             if (!err) {
                 if (!err) {

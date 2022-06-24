@@ -10,6 +10,7 @@ const cartRoute = require('./routes/cart');
 const dashboardRoute = require('./routes/dashboard');
 const checkoutRoute = require('./routes/checkout');
 const orderRoute = require('./routes/order');
+const ordersRoute = require('./routes/orders');
 const app = express();
 const path = require('path');
 const fileUpload = require('express-fileupload');
@@ -28,5 +29,6 @@ app.use('/cart', cartRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/checkout', checkoutRoute);
 app.use('/order', orderRoute);
+app.use('/orders', ordersRoute);
 
 module.exports = app;

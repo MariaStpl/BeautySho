@@ -8,11 +8,33 @@ router.get('/details',auth.authenticateToken,(req, res, next)=>{
     var categoryCount;
     var productCount;
     var billCount;
+    var ordersCount;
+    var detailCount;
+
+    var query = "select count(DISTINCT checkoutId) as ordersCount from orderCart WHERE MONTH(orderTime) = 6";
+    connection.query(query,(err,results)=>{
+        if(!err){
+            ordersCount = results[0].ordersCount;
+        }
+        else{
+            return res.status(500).json(err); 
+        }
+    })
 
     var query = "select count(id) as categoryCount from category";
     connection.query(query,(err,results)=>{
         if(!err){
             categoryCount = results[0].categoryCount;
+        }
+        else{
+            return res.status(500).json(err); 
+        }
+    })
+
+    var query = "select count(id) as detailCount from detail_product";
+    connection.query(query,(err,results)=>{
+        if(!err){
+            detailCount = results[0].detailCount;
         }
         else{
             return res.status(500).json(err); 
@@ -37,7 +59,9 @@ router.get('/details',auth.authenticateToken,(req, res, next)=>{
             var data ={
                 category : categoryCount,
                 product : productCount,
-                bill : billCount
+                bill : billCount,
+                orders: ordersCount,
+                item : detailCount
             };
 
             return res.status(200).json(data);

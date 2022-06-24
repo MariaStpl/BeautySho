@@ -142,6 +142,13 @@ mat-form-field {
 
 .float-right {
     float: right;
+
+}
+
+.float-rightt {
+    flex-direction: column;
+    float: right;
+    margin-right: 23px;
 }
 
 table {
@@ -190,13 +197,11 @@ mat-card {
             flex-direction: column;
         }
 
-        .float-right {
-            margin-top: 30px;
-            flex-direction: column;
-        }
+        
 
 
     }
+    
 
 
 }

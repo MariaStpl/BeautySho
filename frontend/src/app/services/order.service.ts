@@ -15,8 +15,8 @@ export class OrderService {
     return this.httpClient.get(this.url +
         "/order/get/")
 }
-getSum(){
-    return this.httpClient.get(this.url + 
-        "/order/getTotal/");
-}
+// getSum(){
+//     return this.httpClient.get(this.url + 
+//         "/order/getTotal/");
+// }
 }
