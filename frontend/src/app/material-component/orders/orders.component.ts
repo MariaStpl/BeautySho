@@ -83,10 +83,30 @@ export class OrdersComponent implements OnInit {
           const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
               this.ngxService.start();
               this.deleteOrders(values.checkoutId);
+              this.deleteCheckout(values.idCheck);
               dialogRef.close();
           })
   
       }
+
+      deleteCheckout(idCheck:any){
+        this.ordersService.deleteCheckout(idCheck).subscribe((response:any)=>{
+            this.ngxService.stop();
+            this.tableData();
+            this.responseMessage = response?.message;
+            this.snackbarService.openSnackBar(this.responseMessage, "success");
+        },(error:any)=>{          
+            this.ngxService.stop();
+            console.log(error);
+            if (error.error?.message) {
+                this.responseMessage = error.error?.message;
+            }
+            else {
+                this.responseMessage = GlobalConstants.genericError;
+            }
+            this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+        })
+    }
   
       deleteOrders(checkoutId:any){
           this.ordersService.delete(checkoutId).subscribe((response:any)=>{

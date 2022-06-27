@@ -11,7 +11,7 @@ router.get('/details',auth.authenticateToken,(req, res, next)=>{
     var ordersCount;
     var detailCount;
 
-    var query = "select count(DISTINCT checkoutId) as ordersCount from orderCart WHERE MONTH(orderTime) = 6";
+    var query = "select count(DISTINCT checkoutId) as ordersCount from orderCart";
     connection.query(query,(err,results)=>{
         if(!err){
             ordersCount = results[0].ordersCount;

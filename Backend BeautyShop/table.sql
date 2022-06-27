@@ -107,3 +107,14 @@ alter table orderCart add orderTime timestamp default current_timestamp not null
 alter table orderCart add shipTime timestamp default current_timestamp;
 alter table orderCart add completedTime timestamp default current_timestamp;
 ALTER TABLE orderCart ADD status varchar(50) NOT NULL;
+
+alter table checkout add orderTime timestamp default current_timestamp not null;
+alter table checkout add shipTime timestamp default current_timestamp;
+alter table checkout add completedTime timestamp default current_timestamp;
+ALTER TABLE checkout ADD status varchar(50) NOT NULL;
+
+alter table orderCart DROP orderTime;
+alter table orderCart DROP shipTime;
+alter table orderCart DROP completedTime;
+ALTER TABLE orderCart DROP status;
+

@@ -1,34 +1,43 @@
-
-.card{
+.card {
     height: 80vh;
-    margin: 100px;
-    padding: 25px;
+    margin: 50px 80px 50px 80px;
+    padding: 15px;
 }
-.container{
+
+.container {
     height: auto;
 }
 
-h6{
+h6 {
     font-weight: 800;
     font-size: 19px;
 }
-.content{
+
+.content {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 25%);
     text-align: center;
-    img{
+
+    img {
         text-decoration: none;
         color: inherit;
         border: none;
         outline: none;
-        height: 250px;
-        width: 250px;
-        margin: 20px 0px;
+        height: 320px;
+        width: 450px;
+        margin: -34px 0px;
+    }
+
+    .btnn {
+        margin-top: 40px;
+        font-size: 16px;
+        height: 45px;
+        width: 211px;
     }
 }
 
-.title-center{
+.title-center {
     flex: 1 1 auto;
     text-align: center;
     font-size: 20px;
@@ -147,30 +156,11 @@ a:hover::after {
     vertical-align: middle;
 }
 
-/* Position text in the middle of the page/image */
-.bg-text {
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.8);
-    /* Black w/opacity/see-through */
-    color: white;
-    font-weight: bold;
-    border: 3px solid #f1f1f1;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // z-index: 2;
-    width: 55%;
-    padding: 20px;
-    text-align: center;
-}
-
 .card-header {
     background-color: #e53935;
 }
 
-mat-card {
+.card1 {
     margin-top: 50px !important;
     margin-left: 30px;
     margin-right: 30px;
@@ -198,13 +188,13 @@ mat-card {
 
     }
 
-    mat-card-content {
+    .content1 {
         display: flex;
         margin-top: 15px;
     }
 
     .data-view-container {
-        width: 50%;
+        width: 34%;
         box-sizing: border-box;
         padding-top: 30px;
         padding-left: 15px;
@@ -226,18 +216,16 @@ mat-card {
     }
 
     .product-view-container {
-        width: 50%;
+        width: 33%;
         box-sizing: border-box;
         padding-top: 30px;
-        padding-left: 15px;
-
-
+        padding-left: 60px;
 
         .title-product {
             font-size: 16px;
         }
 
-        mat-card-content{
+        mat-card-content {
             margin-bottom: 0;
             margin-top: 150px;
         }
@@ -246,14 +234,16 @@ mat-card {
             margin-bottom: 0;
             margin-top: 15px;
         }
+
         .product-view-content {
             display: flex;
-            width: 50%;
+            width: 100%;
             grid-column-gap: 8px;
             padding-top: 22px;
 
             .img-section {
                 align-items: center;
+                width: 20%;
 
                 img {
                     border: 1px solid lightgray;
@@ -264,7 +254,6 @@ mat-card {
                 width: 80%;
                 display: flex;
                 flex-direction: column;
-                padding-left: 6px;
 
 
 
@@ -289,14 +278,37 @@ mat-card {
 
                 }
 
-                
+
             }
         }
-        
+
+    }
+
+    .time {
+        width: 33%;
+        box-sizing: border-box;
+        padding-top: 30px;
+        padding-left: 15px;
+
+        .title-time {
+            font-size: 16px;
+        }
+
+        .time-view-content {
+            display: flex;
+            width: 100%;
+            grid-column-gap: 8px;
+            padding-top: 22px;
+
+            .clr {
+                color: #e53935;
+            }
+
+        }
     }
 
 
 
-        
+
 
 }

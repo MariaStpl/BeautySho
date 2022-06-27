@@ -48,11 +48,13 @@ export class OrderComponent implements OnInit {
     cartItem() {
         this.orderService.get().subscribe((response: any) => {
             this.orderList = response.map((data: any) => {
-                if (data.items[0].itemImage) {
-                    data.items[0].itemImage = environment.apiUrl + '/images/upload_detail/' + data.items[0].itemImage;
-                    return data;
-                }
-                console.log(data.items.itemImage);
+                data.items.map((data: any) => {
+                    if (data.itemImage) {
+                        data.itemImage = environment.apiUrl + '/images/upload_detail/' + data.itemImage;
+                        return data;
+                    }
+                    return data
+                })
                 return data
             })
             this.responseMessage = response.message;
