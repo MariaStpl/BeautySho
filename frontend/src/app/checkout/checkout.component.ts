@@ -8,6 +8,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { LoginComponent } from '../login/login.component';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
+import { NotificationService } from '../services/notification.service';
 import { SnackbarService } from '../services/snackbar.service';
 import { GlobalConstants } from '../shared/global-constants';
 import { SignupComponent } from '../signup/signup.component';
@@ -25,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     public totalItem: number = 0;
     checkoutId: any;
     public cartList: any;
-    data:any;
+    data: any;
 
     constructor(private checkoutService: CheckoutService,
         private formBuilder: FormBuilder,
@@ -55,7 +56,7 @@ export class CheckoutComponent implements OnInit {
 
     validateSubmit() {
         if (this.manageOrderForm.controls['name'].value === null ||
-            this.manageOrderForm.controls['email'].value === null || 
+            this.manageOrderForm.controls['email'].value === null ||
             this.manageOrderForm.controls['address'].value === null ||
             this.manageOrderForm.controls['shipping_option'].value === null ||
             this.manageOrderForm.controls['contactNumber'].value === null ||
@@ -85,6 +86,7 @@ export class CheckoutComponent implements OnInit {
             this.checkoutService.removeAllCart().subscribe((response: any) => {
                 this.cartItem();
             })
+            
             this.router.navigate(['/order/get/'])
         }, (error: any) => {
             if (error.error?.message) {
@@ -119,8 +121,8 @@ export class CheckoutComponent implements OnInit {
         })
     }
 
-    getSumVal(){
-        this.cartService.getSum().subscribe((response:any)=>{
+    getSumVal() {
+        this.cartService.getSum().subscribe((response: any) => {
             this.ngxService.stop();
             this.data = response;
             console.log(this.data.sumVal);

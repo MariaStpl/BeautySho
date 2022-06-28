@@ -20,7 +20,6 @@ router.post('/post', (req, res, next) => {
     var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime) values(?,?,?,?,?,?,'To Ship',now(),NULL,NULL)";
     let checkout = req.body;
     connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option], (err, results) => {
-        console.log(results.insertId);
         var query = "INSERT INTO orderCart (checkoutId, itemId, productId, quantity, itemPrice, total) SELECT ?, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"
         connection.query(query, results.insertId, (err, results) => {
             if (!err) {
@@ -31,6 +30,10 @@ router.post('/post', (req, res, next) => {
                     return res.status(500).json(err);
                 }
             }
+        })
+
+        var query = "insert into notification (notif, checkoutId, orderTime, status) values('just made a new order.',?,now(),'new')"
+        connection.query(query, results.insertId, (err, results) => {
         })
 
     })

@@ -70,7 +70,6 @@ router.get('/get/', (req, res, next) => {
 
         }
         setTimeout(() => {
-            console.log(fullOrder);
             if (!err) {
                 return res.status(200).json(fullOrder);
             }

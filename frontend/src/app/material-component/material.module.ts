@@ -23,6 +23,7 @@ import { ManageDetailProductComponent } from './manage-detail-product/manage-det
 import { DetailProductComponent } from './dialog/detail-product/detail-product.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderEditComponent } from './dialog/order-edit/order-edit.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { OrderEditComponent } from './dialog/order-edit/order-edit.component';
     ManageDetailProductComponent,
     DetailProductComponent,
     OrdersComponent,
-    OrderEditComponent    
+    OrderEditComponent,
+    NotificationComponent    
   ]
 })
 export class MaterialComponentsModule {}

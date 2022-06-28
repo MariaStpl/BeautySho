@@ -62,7 +62,6 @@ export class CartComponent implements OnInit {
             this.dataSource = new MatTableDataSource(response)
         }, (error: any) => {
             this.ngxService.stop();
-            console.log(error);
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
             }
@@ -97,7 +96,6 @@ export class CartComponent implements OnInit {
             this.snackbarService.openSnackBar(GlobalConstants.productDeleted, "success");
         }, (error: any) => {
             this.ngxService.stop();
-            console.log(error);
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
             }
@@ -129,7 +127,6 @@ export class CartComponent implements OnInit {
             this.snackbarService.openSnackBar(this.responseMessage, "success");
         }, (error: any) => {
             this.ngxService.stop();
-            console.log(error);
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
             }
@@ -159,7 +156,6 @@ export class CartComponent implements OnInit {
             this.ngxService.stop();
         }, (error:any)=>{
             this.ngxService.stop();
-            console.log(error);
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
             }
@@ -179,7 +175,6 @@ export class CartComponent implements OnInit {
         this.cartService.getSum().subscribe((response:any)=>{
             this.ngxService.stop();
             this.data = response;
-            console.log(this.data.sumVal);
         })
         
         
