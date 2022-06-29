@@ -32,7 +32,7 @@ router.post('/post', (req, res, next) => {
             }
         })
 
-        var query = "insert into notification (notif, checkoutId, orderTime, status) values('just made a new order.',?,now(),'new')"
+        var query = "insert into notification (notif, checkoutId, orderTime, status) values('just made a new order.',?,now(),'Unread')"
         connection.query(query, results.insertId, (err, results) => {
         })
 

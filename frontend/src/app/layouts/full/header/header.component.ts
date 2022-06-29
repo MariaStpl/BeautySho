@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ChangePasswordComponent } from 'src/app/material-component/dialog/change-password/change-password.component';
 import { ConfirmationComponent } from 'src/app/material-component/dialog/confirmation/confirmation.component';
@@ -25,33 +25,48 @@ export class AppHeaderComponent {
         private dialog: MatDialog,
         private notificationService: NotificationService,
         private snackbarService: SnackbarService) {
-            
-            this.notificationService.get().subscribe((response: any) => {
-                this.totalItem = 0; 
-                this.notifList = response.map((data: any) => {
-                    console.log(data.statusNotif);
-                    if (data.statusNotif === 'new') {
-                        
-                        this.totalItem =  this.totalItem + 1
-                    }
-                    return data
-                })
-            }, (error: any) => {
-                console.log(error);
-                if (error.error?.message) {
-                    this.responseMessage = error.error?.message;
-                }
-                else {
-                    this.responseMessage = GlobalConstants.genericError;
-                }
-                this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-            })
+            this.openNotif()        
     }
     
-    openNotif() { 
-
-
-}
+    openNotif() {
+        this.notificationService.get().subscribe((response: any) => {
+            this.totalItem = 0; 
+            this.notifList = response.map((data: any) => {
+                console.log(data.statusNotif);
+                if (data.statusNotif === 'Unread') {
+                    this.totalItem =  this.totalItem + 1
+                }
+                return data
+            })
+        }, (error: any) => {
+            console.log(error);
+            if (error.error?.message) {
+                this.responseMessage = error.error?.message;
+            }
+            else {
+                this.responseMessage = GlobalConstants.genericError;
+            }
+            this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+        })
+    }
+    
+    detailOrder(checkoutId:any){
+        this.router.navigate(['/beautyshop/orders']);
+        var data ={
+            checkoutId:checkoutId
+        }
+        this.notificationService.update(data).subscribe((response:any)=>{
+        }, (error:any)=>{
+            if (error.error?.message) {
+                this.responseMessage = error.error?.message;
+            }
+            else {
+                this.responseMessage = GlobalConstants.genericError;
+            }
+            this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+        })
+       
+    }
 
 
 

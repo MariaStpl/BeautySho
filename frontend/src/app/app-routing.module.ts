@@ -54,7 +54,11 @@ const routes: Routes = [
         component: CheckoutComponent,
     },
     {
-        path: 'order/get',
+        path: 'order/get/:id',
+        component: OrderComponent,
+    },
+    {
+        path: 'order/getAll',
         component: OrderComponent,
     },
     { path: '**', component: HomeComponent }

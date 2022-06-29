@@ -49,7 +49,7 @@ handleSubmit() {
   edit() {
     var formData = this.ordersForm.value;
     var data = {
-        idCheck: this.dialogData.data.idCheck,
+        checkoutId: this.dialogData.data.checkoutId,
         status: formData.status,
     }
     this.ordersService.update(data).subscribe((response: any) => {

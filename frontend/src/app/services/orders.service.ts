@@ -16,9 +16,9 @@ export class OrdersService {
             "/orders/get/")
     }
 
-    deleteCheckout(idCheck: any) {
+    deleteCheckout(checkoutId: any) {
         return this.httpClient.delete(this.url +
-            "/orders/deleteCheckout/" + idCheck)
+            "/orders/deleteCheckout/" + checkoutId)
     }
 
     delete(checkoutId: any) {

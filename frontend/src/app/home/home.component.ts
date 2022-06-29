@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     }
 
     shipAction() {
-        this.router.navigate(['/order/get'])
+        this.router.navigate(['/order/getAll'])
     }
 }
 

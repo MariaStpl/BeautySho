@@ -14,5 +14,10 @@ export class NotificationService {
         return this.httpClient.get(this.url +
             "/notification/get")
     }
+    update(data:any){
+        return this.httpClient.patch(this.url +
+            "/notification/update", data)
+
+    }
   
 }

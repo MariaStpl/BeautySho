@@ -18,6 +18,7 @@ import { CartService } from '../services/cart.service';
 })
 export class OrderComponent implements OnInit {
     public orderList: any = [];
+    public orderitems: any = [];
     responseMessage: any;
     public items: any = [];
     itemArray: any = [];
@@ -33,20 +34,19 @@ export class OrderComponent implements OnInit {
         private cartService: CartService) { }
 
     ngOnInit(): void {
-        // this.route.params.subscribe(params => {
-        //     console.log(params) //log the entire params object
-        //     console.log(params['id'])
-        //     this.cartItem(params.id)
-        // }) 
-        this.cartItem()
+        this.route.params.subscribe(params => {
+            console.log(params) //log the entire params object
+            console.log(params['id'])
+            this.cartItem(params.id)
+        }) 
         this.cartService.getCart().subscribe((response: any) => {
             this.totalItem = response.length;
         })
         //this.getSumVal()
     }
 
-    cartItem() {
-        this.orderService.get().subscribe((response: any) => {
+    cartItem(id: any) {
+        this.orderService.get(id).subscribe((response: any) => {
             this.orderList = response.map((data: any) => {
                 data.items.map((data: any) => {
                     if (data.itemImage) {
@@ -74,18 +74,6 @@ export class OrderComponent implements OnInit {
 
 
     }
-    // getSumVal() {
-    //     this.orderService.getSum().subscribe((response: any) => {
-    //         this.ngOnInit();
-    //         this.ngxService.stop();
-    //         this.data = response;
-    //         //console.log(this.data.sumVal);
-
-    //     })
-
-
-    // }
-
 
     signupAction() {
         const dialogConfig = new MatDialogConfig();

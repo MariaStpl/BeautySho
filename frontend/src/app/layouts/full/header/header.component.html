@@ -4,7 +4,8 @@
 
 <mat-menu #notif="matMenu" class="menu">
     <div *ngFor="let notif of notifList">
-        <span  class="menuItems" mat-menu-item>{{notif.name}} {{notif.notif}} ({{notif.statusNotif}})</span>
+        <span  class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)">{{notif.name}} {{notif.notif}}
+            <b style="color: #e53935;">({{notif.statusNotif}})</b></span>
     </div>
 </mat-menu>
 

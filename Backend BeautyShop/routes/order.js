@@ -51,11 +51,43 @@ const router = express.Router();
 //     })
 // })
 
-router.get('/get/', (req, res, next) => {
+router.get('/get/:id', (req, res, next) => {
     var order = [] ;var fullOrder = []
     const id = req.params.id;
+    console.log(req.params.id);
+    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime from checkout WHERE id=?  order by id DESC";
+    connection.query(queryCheckout, [id], (err, resultsCheckout) => {
+        
+        if (resultsCheckout) {
+            order = resultsCheckout.map(v => Object.assign({}, v))
+
+            fullOrder =  order.map(( mapOrder) => {
+                var queryitems = "SELECT o.id, o.itemId, o.productId, o.quantity, o.total, o.checkoutId, d.id as itemId, d.item as itemSize,  d.price as itemPrice, d.description as itemDesc, d.image as itemImage, p.name as productName, p.id as productId FROM ((orderCart as o INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id) where o.checkoutId = ?"
+                connection.query(queryitems, mapOrder.checkoutId, (err, resultsOrder) => {
+                    mapOrder.items = resultsOrder.map( v => Object.assign({}, v));
+
+                })
+                return mapOrder
+            });
+
+        }
+        setTimeout(() => {
+            if (!err) {
+                return res.status(200).json(fullOrder);
+            }
+            else {
+                return res.status(500).json(err);
+            }
+
+        }, 2000);
+    })
+})
+
+router.get('/getAll/', (req, res, next) => {
+    var order = [] ;var fullOrder = []
     var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime from checkout order by id DESC";
     connection.query(queryCheckout, (err, resultsCheckout) => {
+        
         if (resultsCheckout) {
             order = resultsCheckout.map(v => Object.assign({}, v))
 

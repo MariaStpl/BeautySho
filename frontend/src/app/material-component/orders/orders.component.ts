@@ -10,6 +10,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 import { environment } from 'src/environments/environment';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { OrderEditComponent } from '../dialog/order-edit/order-edit.component';
+import { ViewBillOrdersComponent } from '../dialog/view-bill-orders/view-bill-orders.component';
 
 @Component({
   selector: 'app-orders',
@@ -48,6 +49,18 @@ export class OrdersComponent implements OnInit {
             this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
         })
     }
+
+    handleViewAction(values:any){
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.data = {
+            data:values
+        };
+        dialogConfig.width="100%";
+        const dialogRef = this.dialog.open(ViewBillOrdersComponent, dialogConfig);
+        this.router.events.subscribe(()=>{
+            dialogRef.close();
+        })
+    }
     
 
     applyFilter(event:Event){
@@ -83,14 +96,14 @@ export class OrdersComponent implements OnInit {
           const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
               this.ngxService.start();
               this.deleteOrders(values.checkoutId);
-              this.deleteCheckout(values.idCheck);
+              this.deleteCheckout(values.checkoutId);
               dialogRef.close();
           })
   
       }
 
-      deleteCheckout(idCheck:any){
-        this.ordersService.deleteCheckout(idCheck).subscribe((response:any)=>{
+      deleteCheckout(checkoutId:any){
+        this.ordersService.deleteCheckout(checkoutId).subscribe((response:any)=>{
             this.ngxService.stop();
             this.tableData();
             this.responseMessage = response?.message;

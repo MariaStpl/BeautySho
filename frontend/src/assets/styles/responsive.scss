@@ -1,22 +1,9 @@
-/*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
-/*============================================================== 
- For Laptop & above all (1650px) 
- ============================================================== */
-
 @media(min-width:1650px) {
     .main-container.boxed{
         max-width: 1920px;
         margin: 0 auto;
     }
 }
-/*============================================================== 
- For Laptop & above all (1370px) 
- ============================================================== */
 
 @media(max-width:1600px) {
      .main-container.boxed{

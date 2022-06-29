@@ -80,14 +80,14 @@ export class CheckoutComponent implements OnInit {
             address: formData.address,
             shipping_option: formData.shipping_option,
         }
+        
         this.checkoutService.post(data).subscribe((response: any) => {
-            this.checkoutId = response
             this.ngxService.stop();
             this.checkoutService.removeAllCart().subscribe((response: any) => {
                 this.cartItem();
             })
             
-            this.router.navigate(['/order/get/'])
+            
         }, (error: any) => {
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;
@@ -97,6 +97,7 @@ export class CheckoutComponent implements OnInit {
             }
             this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
         })
+        this.router.navigate(['/order/getAll'])
     }
     viewCart() {
         this.checkoutService.get().subscribe((response: any) => {
@@ -150,7 +151,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     shipAction() {
-        this.router.navigate(['/order/get'])
+        this.router.navigate(['/order/getAll'])
     }
 
     cart() {
