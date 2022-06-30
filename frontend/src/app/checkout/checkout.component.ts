@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit {
     checkoutId: any;
     public cartList: any;
     data: any;
+    public list: any;
 
     constructor(private checkoutService: CheckoutService,
         private formBuilder: FormBuilder,
@@ -68,6 +69,9 @@ export class CheckoutComponent implements OnInit {
         else
             return false
     }
+    navigate(id:any){
+        
+    }
 
     submitAction() {
         this.ngxService.start();
@@ -82,6 +86,9 @@ export class CheckoutComponent implements OnInit {
         }
         
         this.checkoutService.post(data).subscribe((response: any) => {
+            console.log(response);
+            this.router.navigate(['/order/get/'+response.insertId])
+            
             this.ngxService.stop();
             this.checkoutService.removeAllCart().subscribe((response: any) => {
                 this.cartItem();
@@ -97,7 +104,7 @@ export class CheckoutComponent implements OnInit {
             }
             this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
         })
-        this.router.navigate(['/order/getAll'])
+       
     }
     viewCart() {
         this.checkoutService.get().subscribe((response: any) => {

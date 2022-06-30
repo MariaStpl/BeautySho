@@ -127,3 +127,6 @@ alter table orderCart DROP shipTime;
 alter table orderCart DROP completedTime;
 ALTER TABLE orderCart DROP status;
 
+
+ALTER TABLE checkout ADD receipt integer(6) NOT NULL;
+
