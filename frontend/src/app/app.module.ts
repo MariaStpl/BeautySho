@@ -23,6 +23,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderComponent } from './order/order.component';
+import { TrackingComponent } from './tracking/tracking.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -53,6 +54,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CartComponent,
     CheckoutComponent,
     OrderComponent,
+    TrackingComponent,
    ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ const checkoutRoute = require('./routes/checkout');
 const orderRoute = require('./routes/order');
 const ordersRoute = require('./routes/orders');
 const notificationRoute = require('./routes/notification');
+const trackingRoute = require('./routes/tracking');
 const app = express();
 const path = require('path');
 const fileUpload = require('express-fileupload');
@@ -32,5 +33,6 @@ app.use('/checkout', checkoutRoute);
 app.use('/order', orderRoute);
 app.use('/orders', ordersRoute);
 app.use('/notification', notificationRoute);
+app.use('/tracking', trackingRoute);
 
 module.exports = app;

@@ -18,7 +18,7 @@ import { ViewBillOrdersComponent } from '../dialog/view-bill-orders/view-bill-or
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-    displayedColumns: string[] = ['name', 'contactNumber', 'address', 'shipping_option', 'orderTime','completedTime','status', 'edit'];
+    displayedColumns: string[] = ['name', 'contactNumber', 'address', 'shipping_option','receipt', 'orderTime','status', 'edit'];
     dataSource: any;
     responseMessage: any;
 

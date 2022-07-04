@@ -29,11 +29,17 @@ h6 {
         margin: -34px 0px;
     }
 
+    mat-form-field{
+        width: 70%;
+        padding-right: 15px;
+        justify-content: center;
+    }
+
     .btnn {
-        margin-top: 40px;
         font-size: 16px;
-        height: 45px;
-        width: 211px;
+        height: 35px;
+        width: 80px;
+        justify-content: center;
     }
 }
 
@@ -199,7 +205,7 @@ a:hover::after {
     }
 
     .data-view-container {
-        width: 34%;
+        width: 33%;
         box-sizing: border-box;
         padding-top: 30px;
         padding-left: 15px;
@@ -221,10 +227,9 @@ a:hover::after {
     }
 
     .product-view-container {
-        width: 33%;
+        width: 35%;
         box-sizing: border-box;
         padding-top: 30px;
-        padding-left: 60px;
 
         .title-product {
             font-size: 16px;
@@ -290,7 +295,7 @@ a:hover::after {
     }
 
     .time {
-        width: 33%;
+        width: 31%;
         box-sizing: border-box;
         padding-top: 30px;
         padding-left: 15px;

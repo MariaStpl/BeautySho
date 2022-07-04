@@ -17,7 +17,7 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/post', (req, res, next) => {
-    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime, receipt) values(?,?,?,?,?,?,'To Ship',now(),NULL,NULL)";
+    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt) values(?,?,?,?,?,?,'Waiting Confirmation',now(),NULL,NULL,NULL, ROUND(1000000 + (RAND() * 9999999999)))";
     let checkout = req.body;
     connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option], (err, results) => {
         var query = "INSERT INTO orderCart (checkoutId, itemId, productId, quantity, itemPrice, total) SELECT ?, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"

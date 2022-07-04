@@ -55,7 +55,7 @@ router.get('/get/:id', (req, res, next) => {
     var order = [] ;var fullOrder = []
     const id = req.params.id;
     console.log(req.params.id);
-    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime from checkout WHERE id=?  order by id DESC";
+    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt from checkout WHERE id=?  order by id DESC";
     connection.query(queryCheckout, [id], (err, resultsCheckout) => {
         
         if (resultsCheckout) {
@@ -85,7 +85,7 @@ router.get('/get/:id', (req, res, next) => {
 
 router.get('/getAll/', (req, res, next) => {
     var order = [] ;var fullOrder = []
-    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime from checkout order by id DESC";
+    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime from checkout order by id DESC";
     connection.query(queryCheckout, (err, resultsCheckout) => {
         
         if (resultsCheckout) {

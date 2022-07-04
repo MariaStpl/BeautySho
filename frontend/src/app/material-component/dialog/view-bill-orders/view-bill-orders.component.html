@@ -45,6 +45,23 @@
             </td>
         </tr>
         <tr>
+            <td  class="flo">
+                <tr>
+                    <td width="130px" valign="top" class="textt">Order Number</td>
+                    <td width="10px">:</td>
+                    <td style="font-weight:bold">{{data.receipt}}</td>
+                </tr>
+            </td>
+
+            <td class="flo">
+                <tr>
+                    <td width="130px" valign="top" class="textt">Confirmation Time</td>
+                    <td width="10px">:</td>
+                    <td style="font-weight:bold">{{data.confirmTime | date:'medium'}}</td>
+                </tr>
+            </td>
+        </tr>
+        <tr>
             <td class="flo">
                 <tr>
                     <td width="130px" valign="top" class="textt">Payment Method</td>

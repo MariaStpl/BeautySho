@@ -8,7 +8,7 @@ var checkRole = require('../services/checkRole');
 
 router.get('/get', (req, res, next) => {
     var order = [] ;var fullOrder = []
-    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, shipTime, completedTime from checkout";
+    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime,receipt from checkout";
     connection.query(queryCheckout, (err, resultsCheckout) => {
         if (resultsCheckout) {
             order = resultsCheckout.map(v => Object.assign({}, v))
@@ -70,7 +70,7 @@ router.delete('/delete/:checkoutId', auth.authenticateToken, checkRole.checkRole
 
 router.patch('/update', (req, res, next) => {
     let checkout = req.body;
-    var query = "update checkout set status=?, completedTime =if(status ='To Completed',now(),completedTime), shipTime =if(status ='To Receive',now(),shipTime) where id=?"
+    var query = "update checkout set status=?, completedTime =if(status ='Package Delivered',now(),completedTime), shipTime =if(status ='Package On Delivery',now(),shipTime), confirmTime =if(status ='Order On Process',now(),confirmTime) where id=?"
     //var query = "update checkout set status=? where id=?";
     //var query = "update checkout set status=?, completedTime= CASE WHENE status = 'To Receive' THEN now(), where id=?";
     connection.query(query, [checkout.status, checkout.checkoutId], (err, results) => {

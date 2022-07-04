@@ -29,7 +29,7 @@
         <b><span class="title-form">Customer Details:</span></b>
         <form [formGroup]="manageOrderForm" class="form-group">
             <div fxFlex fxLayout="column">
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="name" required>
                     <mat-error *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
@@ -38,7 +38,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required>
                     <mat-error *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
@@ -47,7 +47,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Contact Number</mat-label>
                     <input matInput formControlName="contactNumber" required>
                     <mat-error
@@ -59,7 +59,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Address</mat-label>
                     <textarea matInput formControlName="address" required></textarea>
                     <mat-error
@@ -69,7 +69,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Shipping Option</mat-label>
                     <mat-select matInput formControlName="shipping_option" required>
                         <mat-option value="JNE">JNE</mat-option>
@@ -86,7 +86,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill" fxFlex>
+                <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Payment Method</mat-label>
                     <mat-select matInput formControlName="paymentMethod" required>
                         <mat-option value="Cash">Cash</mat-option>

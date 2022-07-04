@@ -8,6 +8,7 @@ import { DetailProductComponent } from './material-component/dialog/detail-produ
 import { OrderComponent } from './order/order.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { RouteGuardService } from './services/route-guard.service';
+import { TrackingComponent } from './tracking/tracking.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -60,6 +61,10 @@ const routes: Routes = [
     {
         path: 'order/getAll',
         component: OrderComponent,
+    },
+    {
+        path: 'tracking/get/:receipt',
+        component: TrackingComponent,
     },
     { path: '**', component: HomeComponent }
 ];
