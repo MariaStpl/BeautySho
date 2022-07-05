@@ -104,6 +104,14 @@ create table notification(
     primary key (id)
 );
 
+create table history(
+    id int NOT NULL AUTO_INCREMENT,
+    keterangan varchar(255),
+    checkoutId integer NOT NULL,
+    createDate timestamp default current_timestamp,
+    primary key(id)
+);
+
 ALTER TABLE checkout ADD status varchar(50) NOT NULL;
 ALTER TABLE checkout ADD address varchar(500) NOT NULL;
 ALTER TABLE checkout ADD shipping_option varchar(50) NOT NULL;
@@ -121,6 +129,8 @@ alter table checkout add shipTime timestamp default current_timestamp;
 alter table checkout add confirmTime timestamp default current_timestamp;
 alter table checkout add completedTime timestamp default current_timestamp;
 ALTER TABLE checkout ADD status varchar(50) NOT NULL;
+ALTER TABLE checkout ADD keterangan varchar(255) NOT NULL;
+alter table checkout add createDate timestamp default current_timestamp not null;
 ALTER TABLE notification ADD status varchar(50) NOT NULL;
 
 alter table orderCart DROP orderTime;

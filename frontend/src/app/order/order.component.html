@@ -66,6 +66,13 @@
                     <div class="time-view-content">
                         <table>
                             <tr>
+                                <td width="170px" valign="top" class="textt">Order Number</td>
+                                <td width="10px">:</td>
+                                <td style="font-weight:bold">{{group.receipt}}</td>
+                            </tr>
+
+
+                            <tr>
                                 <td width="170px" valign="top" class="textt">Waiting Confirmation</td>
                                 <td width="10px">:</td>
                                 <td class="clr" style="font-weight:bold">{{group.orderTime| date:'medium'}}</td>
@@ -121,14 +128,18 @@
             <mat-card class="card">
                 <mat-card-content class="content">
                     <img src="assets/img/empty-order.png" alt="">
-                    <div layout="row"><mat-form-field appearance="standard">
-                        <mat-label>Enter your order number</mat-label>
-                        <input matInput placeholder="Placeholder">   
-                    </mat-form-field>
-                    <button class="btnn" mat-raised-button color="primary" routerLink="">Search</button>
+                    <div layout="row">
+                        <form [formGroup]="manageOrderForm" class="form-group">
+                            <mat-form-field appearance="standard">
+                                <mat-label>Enter your order number</mat-label>
+                                <input matInput formControlName="receipt" placeholder="Placeholder">
+                            </mat-form-field>
+                        
+                        <button class="btnn" mat-raised-button color="primary" (click)="tracking()">Search</button>
+                    </form>
                     </div>
-                    
-                    
+
+
                     <!-- <h6>Your Order is empty</h6>
                     <button class="btnn" mat-raised-button color="primary" routerLink="">Shop Now</button>
                     <h6>Or</h6> -->

@@ -1,6 +1,20 @@
 
 <html>
-
+    <div class="wrapper sticky">
+    <nav class="navbar-fixed-top">
+        <a href="#" class="logo">
+            <mat-icon>store</mat-icon> Beauty Shop
+        </a>
+        <ul>
+            <li><a (click)="cartAction()">
+                    <mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon>
+                </a></li>
+            <li><a (click)="loginAction()">Login</a></li>
+            <li><a (click)="signupAction()">Signup</a></li>
+            <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+        </ul>
+    </nav>
+</div>
 <body>
 
     <div class="container">

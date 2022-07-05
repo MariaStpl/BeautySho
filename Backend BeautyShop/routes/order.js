@@ -2,55 +2,6 @@ const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
 
-
-// router.get('/get', (req, res, next) => {
-//     var order = [];
-//     var fullOrder = []
-//     var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option from checkout";
-//     connection.query(queryCheckout, (err, resultsCheckout) => {
-//         for (const order of resultsCheckout (v => Object.assign({}, v)))
-//         console.log("order"); console.log(order);
-
-//     });
-
-//     fullOrder = order.map((mapOrder) => {
-//         var queryitems = "SELECT o.id, o.itemId, o.productId, o.quantity, o.total, o.checkoutId, d.id as itemId, d.item as itemSize, d.description as itemDesc, d.image as itemImage, p.name as productName, p.id as productId FROM ((orderCart as o INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id) where o.checkoutId = ?"
-//         connection.query(queryitems, mapOrder.checkoutId, (err, resultsOrder) => {
-//             mapOrder.items = resultsOrder.map(v => Object.assign({}, v));
-//             console.log("checkout");
-//             console.log(mapOrder);
-//             return mapOrder
-
-//         })
-
-//         console.log("full_order"); console.log(fullOrder);
-//         if (!err) {
-//             return res.status(200).json(fullOrder);
-//         }
-//         else {
-//             return res.status(500).json(err);
-//         }
-
-
-
-//     });
-
-// })
-
-
-// router.get('/get', (req, res, next) => {
-//     var query = "WITH items AS (SELECT o.id, o.itemId, o.productId, o.quantity, o.total, o.checkoutId, d.id as itemId, d.item as itemSize, d.description as itemDesc, d.image as itemImage, p.name as productName, p.id as productId FROM ((orderCart as o INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id) WHERE o.checkoutId = ? )SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option from checkout";
-//     items = req.query;
-//     connection.query(query, [items.checkoutId], (err, results) => {
-//         if (!err) {
-//             return res.status(200).json(results);
-//         }
-//         else {
-//             return res.status(500).json(err);
-//         }
-//     })
-// })
-
 router.get('/get/:id', (req, res, next) => {
     var order = [] ;var fullOrder = []
     const id = req.params.id;
@@ -112,6 +63,55 @@ router.get('/getAll/', (req, res, next) => {
         }, 2000);
     })
 })
+
+
+// router.get('/get', (req, res, next) => {
+//     var order = [];
+//     var fullOrder = []
+//     var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option from checkout";
+//     connection.query(queryCheckout, (err, resultsCheckout) => {
+//         for (const order of resultsCheckout (v => Object.assign({}, v)))
+//         console.log("order"); console.log(order);
+
+//     });
+
+//     fullOrder = order.map((mapOrder) => {
+//         var queryitems = "SELECT o.id, o.itemId, o.productId, o.quantity, o.total, o.checkoutId, d.id as itemId, d.item as itemSize, d.description as itemDesc, d.image as itemImage, p.name as productName, p.id as productId FROM ((orderCart as o INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id) where o.checkoutId = ?"
+//         connection.query(queryitems, mapOrder.checkoutId, (err, resultsOrder) => {
+//             mapOrder.items = resultsOrder.map(v => Object.assign({}, v));
+//             console.log("checkout");
+//             console.log(mapOrder);
+//             return mapOrder
+
+//         })
+
+//         console.log("full_order"); console.log(fullOrder);
+//         if (!err) {
+//             return res.status(200).json(fullOrder);
+//         }
+//         else {
+//             return res.status(500).json(err);
+//         }
+
+
+
+//     });
+
+// })
+
+
+// router.get('/get', (req, res, next) => {
+//     var query = "WITH items AS (SELECT o.id, o.itemId, o.productId, o.quantity, o.total, o.checkoutId, d.id as itemId, d.item as itemSize, d.description as itemDesc, d.image as itemImage, p.name as productName, p.id as productId FROM ((orderCart as o INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id) WHERE o.checkoutId = ? )SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option from checkout";
+//     items = req.query;
+//     connection.query(query, [items.checkoutId], (err, results) => {
+//         if (!err) {
+//             return res.status(200).json(results);
+//         }
+//         else {
+//             return res.status(500).json(err);
+//         }
+//     })
+// })
 
 // router.get('/getTotal', (req, res, next) => {
 //     var totalSum;

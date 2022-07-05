@@ -28,6 +28,7 @@ export class OrderEditComponent implements OnInit {
 ngOnInit(): void {
     this.ordersForm = this.formBuilder.group({
         status: [null, Validators.required],
+        keterangan: [null, Validators.required],
     })
 
     if (this.dialogData.action === 'Edit') {
@@ -50,6 +51,7 @@ handleSubmit() {
     var formData = this.ordersForm.value;
     var data = {
         checkoutId: this.dialogData.data.checkoutId,
+        keterangan: formData.keterangan,
         status: formData.status,
     }
     this.ordersService.update(data).subscribe((response: any) => {

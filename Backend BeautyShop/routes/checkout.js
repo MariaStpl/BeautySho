@@ -1,5 +1,4 @@
 const express = require('express');
-const { localeData } = require('moment');
 const { response } = require('..');
 const connection = require("../connection");
 const router = express.Router();
@@ -17,9 +16,27 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/post', (req, res, next) => {
-    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt) values(?,?,?,?,?,?,'Waiting Confirmation',now(),NULL,NULL,NULL, ROUND(1000000 + (RAND() * 9999999999)))";
+    const dateObj = new Date();
+    let year = dateObj.getFullYear();
+    let month = dateObj.getMonth();
+    month = ('0' + month).slice(-2); // To make sure the month always has 2-character-formate. For example, 1 => 01, 2 => 02    
+    let date = dateObj.getDate();
+    date = ('0' + date).slice(-2); // To make sure the date always has 2-character-formate
+    let hour = dateObj.getHours();
+    hour = ('0' + hour).slice(-2); // To make sure the hour always has 2-character-formate
+    let minute = dateObj.getMinutes();
+    minute = ('0' + minute).slice(-2);
+    let second = dateObj.getSeconds();
+    second = ('0' + second).slice(-2);
+    const time = `${year}${month}${date}${hour}${minute}${second}`;
+
+    var c = Math.round(100 + (Math.random() * 99999));
+
+    var numberOrder = 'ORD-' + time + '-' + c.toString()
+
+    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, keterangan, createDate, receipt) values (?,?,?,?,?,?,'Waiting Confirmation',now(),NULL,NULL,NULL,NULL,NULL,?)";
     let checkout = req.body;
-    connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option], (err, results) => {
+    connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option, numberOrder], (err, results) => {
         var query = "INSERT INTO orderCart (checkoutId, itemId, productId, quantity, itemPrice, total) SELECT ?, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"
         connection.query(query, results.insertId, (err, results) => {
         })

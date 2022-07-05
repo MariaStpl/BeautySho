@@ -10,6 +10,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginComponent } from '../login/login.component';
 import { CartService } from '../services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-order',
@@ -24,6 +25,7 @@ export class OrderComponent implements OnInit {
     itemArray: any = [];
     public totalItem: number = 0;
     data: any;
+    manageOrderForm: any = FormGroup;
 
     constructor(private orderService: OrderService,
         private ngxService: NgxUiLoaderService,
@@ -31,7 +33,8 @@ export class OrderComponent implements OnInit {
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private router: Router,
-        private cartService: CartService) { }
+        private cartService: CartService,
+        private formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
@@ -42,7 +45,17 @@ export class OrderComponent implements OnInit {
         this.cartService.getCart().subscribe((response: any) => {
             this.totalItem = response.length;
         })
-        //this.getSumVal()
+        this.manageOrderForm = this.formBuilder.group({
+            receipt: [null, [Validators.required]]
+        })
+    }
+
+    tracking(){
+        var formData = this.manageOrderForm.value;
+        var data = {
+            receipt: formData.receipt,
+        }
+        this.router.navigate(['/tracking/get/'+ data.receipt])
     }
 
     cartItem(id: any) {

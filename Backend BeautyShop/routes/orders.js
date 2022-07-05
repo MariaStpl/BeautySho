@@ -8,7 +8,7 @@ var checkRole = require('../services/checkRole');
 
 router.get('/get', (req, res, next) => {
     var order = [] ;var fullOrder = []
-    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime,receipt from checkout";
+    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt, keterangan, createDate from checkout";
     connection.query(queryCheckout, (err, resultsCheckout) => {
         if (resultsCheckout) {
             order = resultsCheckout.map(v => Object.assign({}, v))
@@ -68,15 +68,26 @@ router.delete('/delete/:checkoutId', auth.authenticateToken, checkRole.checkRole
     })
 })
 
-router.patch('/update', (req, res, next) => {
+router.put('/update', (req, res, next) => {
     let checkout = req.body;
-    var query = "update checkout set status=?, completedTime =if(status ='Package Delivered',now(),completedTime), shipTime =if(status ='Package On Delivery',now(),shipTime), confirmTime =if(status ='Order On Process',now(),confirmTime) where id=?"
+    var queryUpdate = "update checkout set status=?, keterangan=?, createDate=now(), completedTime =if(status ='Package Delivered',now(),completedTime), shipTime =if(status ='Package On Delivery',now(),shipTime), confirmTime =if(status ='Order On Process',now(),confirmTime) where id=?"
     //var query = "update checkout set status=? where id=?";
     //var query = "update checkout set status=?, completedTime= CASE WHENE status = 'To Receive' THEN now(), where id=?";
-    connection.query(query, [checkout.status, checkout.checkoutId], (err, results) => {
+    connection.query(queryUpdate, [checkout.status, checkout.keterangan, checkout.checkoutId], (err, resultsUpdate) => {
+        var queryInsert = "INSERT INTO history (createDate) values(now())";
+        connection.query(queryInsert, (err, resultsInsert) => {
+            if (!err) {
+                if (!err) {
+                    return res.status(200).json(resultsInsert);
+                }
+                else {
+                    return res.status(500).json(err);
+                }
+            }
+        })
         if (!err) {
             if (!err) {
-                if (results.affectedRows == 0) {
+                if (resultsUpdate.affectedRows == 0) {
                     return res.status(404).json({ message: "Order id does not found" });
                 }
                 return res.status(200).json({ message: "Order Updated Successfully" });

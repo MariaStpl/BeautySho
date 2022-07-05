@@ -18,7 +18,13 @@
                         </mat-select>
                         <mat-error *ngIf="ordersForm.controls.status.touched && ordersForm.controls.status.invalid">
                             <span *ngIf="ordersForm.controls.status.errors.required">This Field is mandatory.</span>
-                            <span *ngIf="ordersForm.controls.status.errors.pattern">This Field is invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" fxFlex>
+                        <mat-label>Keterangan</mat-label>
+                        <input matInput formControlName="keterangan">
+                        <mat-error *ngIf="ordersForm.controls.keterangan.touched && ordersForm.controls.keterangan.invalid">
                         </mat-error>
                     </mat-form-field>
                 </div>

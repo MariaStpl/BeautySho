@@ -26,7 +26,7 @@ export class OrdersService {
             "/orders/delete/" + checkoutId)
     }
     update(data: any) {
-        return this.httpClient.patch(this.url +
+        return this.httpClient.put(this.url +
             "/orders/update", data)
     }
 
