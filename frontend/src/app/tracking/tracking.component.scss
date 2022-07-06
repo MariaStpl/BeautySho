@@ -1,3 +1,25 @@
+.garis_verikal{
+    border-left: 1px rgb(211, 208, 208) solid;
+    height: auto;
+    width: 0px;
+    margin-top: 30px;
+    }
+.title-tracking{
+    padding-left: 15px;
+}
+mat-card {
+    align-self: center;
+    margin: 0 auto;
+    margin-top: 150px !important;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    padding-right: 25px;
+    height: auto;
+    width: 60%;
+    display: flex;
+    padding-bottom: 80px;
+}
+
 h3 {
     // font-family: Lato;
     text-align: center;
@@ -22,7 +44,7 @@ h3 {
 }
 
 .bar {
-    width: 15%;
+    width: 14%;
     height: 0.063em;
     margin-bottom: 1.25em;
     border: 0.031em solid #000;
@@ -33,10 +55,14 @@ h3 {
     margin: "0 auto";
 }
 
+.progress {
+    text-align: center;
+}
+
 .container {
+    margin-bottom: 50px;
     min-width: 350px;
     margin-top: 100px;
-    text-align: center;
 }
 
 .circle-desc {
@@ -49,42 +75,42 @@ h3 {
 }
 
 @media only screen and (max-width: 320px) {
-    body {
+    .container {
         font-size: 20%
     }
 }
 
 /*extra small devices*/
 @media only screen and (max-width: 600px) {
-    body {
+    .container {
         font-size: 40%
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    body {
+    .container {
         font-size: 60%
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    body {
+    .container {
         font-size: 80%
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    body {
+    .container {
         font-size: 100%
     }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    body {
+    .container {
         font-size: 120%
     }
 }
@@ -224,4 +250,199 @@ a:hover::after {
 
 .card-header {
     background-color: #e53935;
+}
+
+.history {
+    width: 67%;
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-right: 20px;
+
+
+
+    .title-data {
+        font-size: 16px;
+    }
+
+
+    .content-history {
+        width: 100%;
+        grid-column-gap: 8px;
+        padding-top: 22px;
+
+    }
+}
+
+.data-view-container {
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-left: 40px;
+    font-size: 15px;
+
+
+
+    .title-data {
+        font-size: 16px;
+    }
+
+
+    .data-view-content {
+        display: flex;
+        width: 100%;
+        grid-column-gap: 8px;
+        padding-top: 22px;
+
+    }
+}
+
+.product-view-container {
+    box-sizing: border-box;
+    padding-top: 40px;
+    font-size: 15px;
+    padding-left: 30px;
+    margin-top: 30px;
+
+    .title-product {
+        font-size: 16px;
+    }
+
+    mat-card-content {
+        margin-bottom: 0;
+        margin-top: 150px;
+    }
+
+    button {
+        margin-bottom: 0;
+        margin-top: 15px;
+    }
+
+    .product-view-content {
+        display: flex;
+        width: 100%;
+        grid-column-gap: 8px;
+        padding-top: 22px;
+
+        .img-section {
+            align-items: center;
+            width: 20%;
+
+            img {
+                border: 1px solid lightgray;
+            }
+        }
+
+        .product-detail-section {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+
+
+
+            .product-name {
+                font-size: 14px;
+                margin: 0 0 3px;
+                color: black;
+            }
+
+            .product-description {
+                margin: 0 0 3px;
+                color: grey;
+
+
+            }
+
+            .product-price {
+                margin: 0 0 3px;
+                color: #e53935;
+                font-weight: bolder;
+
+
+            }
+
+
+        }
+    }
+
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.time {
+    position: absolute;
+    left: -110px;
+}
+
+.timeline-wrapper {
+    padding-left: 80px;
+    min-width: 400px;
+    font-family: 'Helvetica';
+    
+    /*border: 1px solid #CCC;*/
+}
+
+.StepProgress {
+    position: relative;
+    padding-left: 45px;
+    list-style: none;
+}
+
+.StepProgress::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 26px;
+    width: 10px;
+    height: 150%;
+    border-left: 2px solid green;
+    counter-increment: list;
+}
+
+.StepProgress-item {
+    position: relative;
+    counter-increment: list;
+}
+
+.StepProgress-item:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+.StepProgress-item::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    left: -30px;
+    height: 100%;
+    width: 10px;
+}
+
+.StepProgress-item::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -26px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+
+.StepProgress-item.is-done::after {
+    content: "";
+    font-size: 10px;
+    color: #FFF;
+    text-align: center;
+    border: 2px solid green;
+    background-color: green;
+}
+
+.StepProgress strong {
+    display: block;
 }

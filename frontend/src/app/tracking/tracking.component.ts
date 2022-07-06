@@ -47,8 +47,17 @@ export class TrackingComponent implements OnInit {
     viewTracking(receipt:any) {
         this.trackingService.get(receipt).subscribe((res: any) => {
             this.track = res.map((data: any) => {
-                console.log(data.status);
-                this.orderStatus = data.status            
+                this.orderStatus = data.status   
+                data.items.map((data: any) => {
+                    if (data.itemImage) {
+                        data.itemImage = environment.apiUrl + '/images/upload_detail/' + data.itemImage;
+                        return data;
+                    }
+                    return data
+                }) 
+                data.hist.map((data: any) => {
+                    return data
+                })          
                 return data
             })
         }, (error: any) => {

@@ -74,16 +74,11 @@ router.put('/update', (req, res, next) => {
     //var query = "update checkout set status=? where id=?";
     //var query = "update checkout set status=?, completedTime= CASE WHENE status = 'To Receive' THEN now(), where id=?";
     connection.query(queryUpdate, [checkout.status, checkout.keterangan, checkout.checkoutId], (err, resultsUpdate) => {
-        var queryInsert = "INSERT INTO history (createDate) values(now())";
-        connection.query(queryInsert, (err, resultsInsert) => {
-            if (!err) {
-                if (!err) {
-                    return res.status(200).json(resultsInsert);
-                }
-                else {
-                    return res.status(500).json(err);
-                }
-            }
+        var keterangan = checkout.keterangan;
+        var checkoutId = checkout.checkoutId;
+        var queryInsert = "INSERT INTO history (createDate, keterangan, checkoutId) values(now(),?,?)";
+        connection.query(queryInsert, [keterangan, checkoutId],(err, resultsInsert) => {
+
         })
         if (!err) {
             if (!err) {
