@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CmsComponent } from './cms/cms.component';
 import { HomeComponent } from './home/home.component';
 import { FullComponent } from './layouts/full/full.component';
 import { DetailProductComponent } from './material-component/dialog/detail-product/detail-product.component';
@@ -12,6 +13,9 @@ import { TrackingComponent } from './tracking/tracking.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'administrator', component: CmsComponent },
+    { path: 'administrator/signup', component: CmsComponent },
+    { path: 'administrator/forgotPassword', component: CmsComponent },
     {
         path: 'beautyshop',
         component: FullComponent,

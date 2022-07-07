@@ -24,6 +24,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderComponent } from './order/order.component';
 import { TrackingComponent } from './tracking/tracking.component';
+import { CmsComponent } from './cms/cms.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -55,6 +56,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CheckoutComponent,
     OrderComponent,
     TrackingComponent,
+    CmsComponent,
    ],
   imports: [
     BrowserModule,
