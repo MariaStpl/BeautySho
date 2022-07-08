@@ -25,7 +25,7 @@ mat-toolbar{
 .form-login{
     background-color: white;
     width: 30%;
-    height: 50%;
+    height: 65%;
     margin-right: 150px !important;
     border-radius: 15px;
     margin-left: 30px;
@@ -34,14 +34,6 @@ mat-toolbar{
     text-align: center;
 }
 
-.forget{
-    float: right;
-    color: #e53935;
-}
-.regist{
-    float: left;
-    color: #e53935;
-}
 .btn{
     margin-top: 40px;
     width: 100%;
@@ -49,6 +41,10 @@ mat-toolbar{
     font-size: 16px;
     font-weight: 600;
 
+}
+
+.login{
+    color: #e53935;
 }
 
 

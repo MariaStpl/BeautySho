@@ -25,6 +25,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderComponent } from './order/order.component';
 import { TrackingComponent } from './tracking/tracking.component';
 import { CmsComponent } from './cms/cms.component';
+import { SignupCmsComponent } from './signup-cms/signup-cms.component';
+import { FogotPasswordCmsComponent } from './fogot-password-cms/fogot-password-cms.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -57,6 +59,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     OrderComponent,
     TrackingComponent,
     CmsComponent,
+    SignupCmsComponent,
+    FogotPasswordCmsComponent,
    ],
   imports: [
     BrowserModule,

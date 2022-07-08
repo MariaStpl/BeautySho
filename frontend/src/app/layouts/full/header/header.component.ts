@@ -79,7 +79,7 @@ export class AppHeaderComponent {
         const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((user) => {
             dialogRef.close();
             localStorage.clear();
-            this.router.navigate(['/']);
+            this.router.navigate(['/administrator']);
         })
     }
     changePassword() {
