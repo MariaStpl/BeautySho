@@ -13,6 +13,7 @@ const orderRoute = require('./routes/order');
 const ordersRoute = require('./routes/orders');
 const notificationRoute = require('./routes/notification');
 const trackingRoute = require('./routes/tracking');
+const profilRoute = require('./routes/profil');
 const app = express();
 const path = require('path');
 const fileUpload = require('express-fileupload');
@@ -34,5 +35,6 @@ app.use('/order', orderRoute);
 app.use('/orders', ordersRoute);
 app.use('/notification', notificationRoute);
 app.use('/tracking', trackingRoute);
+app.use('/profil', profilRoute);
 
 module.exports = app;

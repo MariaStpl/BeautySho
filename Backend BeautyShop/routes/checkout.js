@@ -2,6 +2,8 @@ const express = require('express');
 const { response } = require('..');
 const connection = require("../connection");
 const router = express.Router();
+var auth = require("../services/authentication");
+var checkRole = require("../services/checkRole");
 
 router.get('/get', (req, res, next) => {
     var query = "SELECT cart.id, cart.itemId, cart.productId, cart.quantity, cart.total, detail_product.id as itemId, detail_product.item as itemSize, detail_product.description as itemDesc, detail_product.price as itemPrice, detail_product.image as itemImage, product.name as productName, product.id as productId FROM cart, detail_product, product WHERE cart.itemId=detail_product.id AND detail_product.productId = product.id";
