@@ -1,132 +1,115 @@
-<div class="wrapper sticky">
-    <nav class="navbar-fixed-top">
-        <a href="#" class="logo">
-            <mat-icon>store</mat-icon> Beauty Shop
-        </a>
-        <ul>
-            <li><a (click)="cartAction()">
-                    <mat-icon matBadge="{{totalItem}}" matBadgeColor="warn">shopping_basket</mat-icon>
-                </a></li>
-            <li><a (click)="shipAction()">
-                    <mat-icon>local_shipping</mat-icon>
-                </a></li>
-            <li><a (click)="loginAction()">Login</a></li>
-            <li><a (click)="signupAction()">Signup</a></li>
-            <li><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
-        </ul>
-    </nav>
-</div>
-<hr>
-
-<mat-card class="title">
-    <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"
-        (click)="submitAction()">Place Order</button>
-    <button mat-flat-button color="primary" (click)="cart()">Back to Cart</button>
-</mat-card>
-<hr>
-<div class="view-container">
-    <div class="form">
-        <b><span class="title-form">Customer Details:</span></b>
-        <form [formGroup]="manageOrderForm" class="form-group">
-            <div fxFlex fxLayout="column">
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name" required>
-                    <mat-error *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
-                        <span *ngIf="manageOrderForm.controls.name.errors.required">This field is mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.name.errors.pattern">This field is invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" required>
-                    <mat-error *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
-                        <span *ngIf="manageOrderForm.controls.email.errors.required">This field is mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.email.errors.pattern">This field is invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Contact Number</mat-label>
-                    <input matInput formControlName="contactNumber" required>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
-                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">This field is
-                            mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.contactNumber.errors.pattern">This field is
-                            invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Address</mat-label>
-                    <textarea matInput formControlName="address" required></textarea>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.address.touched && manageOrderForm.controls.address.invalid">
-                        <span *ngIf="manageOrderForm.controls.address.errors.required">This field is mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.address.errors.pattern">This field is invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Shipping Option</mat-label>
-                    <mat-select matInput formControlName="shipping_option" required>
-                        <mat-option value="JNE">JNE</mat-option>
-                        <mat-option value="JNT">JNT</mat-option>
-                        <mat-option value="Sicepat">Sicepat</mat-option>
-                        <mat-option value="Anteraja">Anteraja</mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.required">This field is
-                            mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.pattern">This field is
-                            invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Payment Method</mat-label>
-                    <mat-select matInput formControlName="paymentMethod" required>
-                        <mat-option value="Cash">Cash</mat-option>
-                        <mat-option value="Credit Card">Credit Card</mat-option>
-                        <mat-option value="Debit Card">Debit Card</mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.required">This field is
-                            mandatory</span>
-                        <span *ngIf="manageOrderForm.controls.paymentMethod.errors.pattern">This field is
-                            invalid.</span>
-                    </mat-error>
-                </mat-form-field>
-
-            </div>
-        </form>
-    </div>
+<app-header-home></app-header-home>
+<div>
+    <mat-card class="title">
+        <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"
+            (click)="submitAction()">Place Order</button>
+        <button mat-flat-button color="primary" (click)="cart()">Back to Cart</button>
+    </mat-card>
     <hr>
-
+    <div class="view-container">
+        <div class="form">
+            <b><span class="title-form">Customer Details:</span></b>
+            <form [formGroup]="manageOrderForm" class="form-group">
+                <div fxFlex fxLayout="column">
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" required>
+                        <mat-error *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
+                            <span *ngIf="manageOrderForm.controls.name.errors.required">This field is mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.name.errors.pattern">This field is invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
     
-    <div class="product-view-container">
-        <b><span class="title-product">Product:</span>
-            <button mat-flat-button color="primary" class="float-rightt">Total : {{data?.sumVal |currency:"IDR ":"symbol"}}</button>
-        </b>
-        <ng-container *ngFor="let item of cartItem; let i = index">
-            <div class="product-view-content">
-                <div>{{i+1}}.</div>
-                <div class="img-section">
-                    <img width="100px" height="100px" src="{{item.itemImage}}" alt="" />
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" required>
+                        <mat-error *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
+                            <span *ngIf="manageOrderForm.controls.email.errors.required">This field is mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.email.errors.pattern">This field is invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput formControlName="contactNumber" required>
+                        <mat-error
+                            *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
+                            <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">This field is
+                                mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.contactNumber.errors.pattern">This field is
+                                invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="address" required></textarea>
+                        <mat-error
+                            *ngIf="manageOrderForm.controls.address.touched && manageOrderForm.controls.address.invalid">
+                            <span *ngIf="manageOrderForm.controls.address.errors.required">This field is mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.address.errors.pattern">This field is invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Shipping Option</mat-label>
+                        <mat-select matInput formControlName="shipping_option" required>
+                            <mat-option value="JNE">JNE</mat-option>
+                            <mat-option value="JNT">JNT</mat-option>
+                            <mat-option value="Sicepat">Sicepat</mat-option>
+                            <mat-option value="Anteraja">Anteraja</mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
+                            <span *ngIf="manageOrderForm.controls.paymentMethod.errors.required">This field is
+                                mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.paymentMethod.errors.pattern">This field is
+                                invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" fxFlex>
+                        <mat-label>Payment Method</mat-label>
+                        <mat-select matInput formControlName="paymentMethod" required>
+                            <mat-option value="Cash">Cash</mat-option>
+                            <mat-option value="Credit Card">Credit Card</mat-option>
+                            <mat-option value="Debit Card">Debit Card</mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
+                            <span *ngIf="manageOrderForm.controls.paymentMethod.errors.required">This field is
+                                mandatory</span>
+                            <span *ngIf="manageOrderForm.controls.paymentMethod.errors.pattern">This field is
+                                invalid.</span>
+                        </mat-error>
+                    </mat-form-field>
+    
                 </div>
-                <div class="product-detail-section">
-                    <p class="product-name">{{item.productName}} | {{item.itemSize}}</p>
-                    <p class="product-price">{{item.itemPrice | currency:"IDR ":"symbol"}} x {{item.quantity}}</p>
-                    <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
+            </form>
+        </div>
+        <hr>
+    
+        
+        <div class="product-view-container">
+            <b><span class="title-product">Product:</span>
+                <button mat-flat-button color="primary" class="float-rightt">Total : {{data?.sumVal |currency:"IDR ":"symbol"}}</button>
+            </b>
+            <ng-container *ngFor="let item of cartItem; let i = index">
+                <div class="product-view-content">
+                    <div>{{i+1}}.</div>
+                    <div class="img-section">
+                        <img width="100px" height="100px" src="{{item.itemImage}}" alt="" />
+                    </div>
+                    <div class="product-detail-section">
+                        <p class="product-name">{{item.productName}} | {{item.itemSize}}</p>
+                        <p class="product-price">{{item.itemPrice | currency:"IDR ":"symbol"}} x {{item.quantity}}</p>
+                        <p class="product-description">{{item.total | currency:"IDR ":"symbol"}}</p>
+                    </div>
                 </div>
-            </div>
-        </ng-container>
+            </ng-container>
+        </div>
+    
+    
+    
     </div>
-
-
-
 </div>

@@ -4,6 +4,8 @@ export class GlobalConstants{
 
     public static unauthroized:string = "You are not authorized person to access this page.";
 
+    public static mustlogin:string = "You must login first before checkout.";
+
     public static productExistError: string = "Product already exist.";
     public static productAdded : string = "Product Added Successfully.";
 

@@ -26,7 +26,8 @@ export class RouteGuardService {
         }
         catch(err){
             localStorage.clear();
-            this.router.navigate(['/']);
+            this.snackbarService.openSnackBar(GlobalConstants.mustlogin, GlobalConstants.error);
+            // this.router.navigate(['/']);
         }
 
         let checkRole = false;
@@ -37,7 +38,7 @@ export class RouteGuardService {
             }
         }
 
-        if(tokenPayload.role == 'user' || tokenPayload.role == 'admin'){
+        if(tokenPayload.role == 'admin'){
             if(this.auth.isAuthenticated() && checkRole){
                 return true;
             }
@@ -46,9 +47,18 @@ export class RouteGuardService {
             return false;
         }
         else{
-            this.router.navigate(['/']);
-            localStorage.clear();
-            return false;
+            if(tokenPayload.role == 'user'){
+                if(this.auth.isAuthenticated() && checkRole){
+                    return true;
+                }
+                this.router.navigate(['/']);
+                return false;
+            }
+            else{
+                this.router.navigate(['/']);
+                localStorage.clear();
+                return false;
+            }
         }
     }
 }

@@ -1,0 +1,29 @@
+<div class="wrapper sticky">
+    <nav class="navbar-fixed-top">
+      <a href="#" class="logo">
+        <mat-icon>store</mat-icon>
+        <strong> Beauty Shop</strong>
+      </a>
+      <ul>
+        <li><a (click)="cartAction()"><mat-icon matBadge="{{ totalItem }}" matBadgeColor="primary">shopping_basket</mat-icon></a></li>
+        <li><a (click)="shipAction()"><mat-icon>local_shipping</mat-icon></a></li>
+        <li *ngIf="hasil === 'true'"><a [matMenuTriggerFor]="profile"><mat-icon>account_circle</mat-icon></a></li>
+        <li *ngIf="hasil != 'true'"><a (click)="loginAction()">Login</a></li>
+        <li *ngIf="hasil != 'true'"><a (click)="signupAction()">Signup</a></li>
+        <li *ngIf="hasil != 'true'"><a (click)="forgotPasswordAction()">Forgot Password?</a></li>
+        
+  
+        <mat-menu #profile="matMenu" class="mymegamenu">
+          <button mat-menu-item (click)="profil()">
+            <mat-icon>perm_identity</mat-icon>Profil
+          </button>
+          <button mat-menu-item (click)="changePassword()">
+            <mat-icon>password</mat-icon>Change Password
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>Sign Out
+          </button>
+        </mat-menu>
+      </ul>
+    </nav>
+  </div>

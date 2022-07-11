@@ -23,7 +23,6 @@ export class CheckoutComponent implements OnInit {
     public detailCustomers: any;
     manageOrderForm: any = FormGroup;
     responseMessage: any;
-    public totalItem: number = 0;
     checkoutId: any;
     public cartList: any;
     data: any;
@@ -48,9 +47,6 @@ export class CheckoutComponent implements OnInit {
             paymentMethod: [null, [Validators.required]],
             address: [null, [Validators.required]],
             shipping_option: [null, [Validators.required]],
-        })
-        this.cartService.getCart().subscribe((response: any) => {
-            this.totalItem = response.length;
         })
         this.getSumVal()
     }
@@ -137,43 +133,8 @@ export class CheckoutComponent implements OnInit {
         })
     }
 
-    signupAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(SignupComponent, dialogConfig);
-    }
-    forgotPasswordAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(ForgotPasswordComponent, dialogConfig);
-    }
-    loginAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(LoginComponent, dialogConfig);
-    }
-
-    cartAction() {
-        this.router.navigate(['/cart'])
-    }
-
-    shipAction() {
-        this.router.navigate(['/order/getAll'])
-    }
-
     cart() {
         this.router.navigate(['/cart'])
-        // this.checkoutService.remove().subscribe((response: any) => {
-        // }, (error: any) => {
-
-        //     if (error.error?.message) {
-        //         this.responseMessage = error.error?.message;
-        //     }
-        //     else {
-        //         this.responseMessage = GlobalConstants.genericError;
-        //     }
-        //     this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-        // })
 
     }
 }

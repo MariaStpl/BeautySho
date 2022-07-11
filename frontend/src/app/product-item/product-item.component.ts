@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailProductService } from '../services/detail-product.service';
 import { environment } from 'src/environments/environment';
-import { element } from 'protractor';
-import { DetailProductComponent } from '../material-component/dialog/detail-product/detail-product.component';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SignupComponent } from '../signup/signup.component';
-import { LoginComponent } from '../login/login.component';
-import { threadId } from 'worker_threads';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog} from '@angular/material/dialog';
 import { GlobalConstants } from '../shared/global-constants';
 import { SnackbarService } from '../services/snackbar.service';
-import { identifierModuleUrl, ThisReceiver } from '@angular/compiler';
 import { CartService } from '../services/cart.service';
 import { MessengerService } from '../services/messenger.service';
 
@@ -103,34 +96,6 @@ export class ProductItemComponent implements OnInit {
         console.log(this.singleProduct.itemPrice);
         
         
-    }
-
-    signupAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(SignupComponent, dialogConfig);
-
-    }
-    forgotPasswordAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(ForgotPasswordComponent, dialogConfig);
-
-    }
-    loginAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(LoginComponent, dialogConfig);
-
-    }
-
-    cartAction() {
-        this.router.navigate(['/cart'])
-
-    }
-
-    shipAction() {
-        this.router.navigate(['/order/get'])
     }
 }
 

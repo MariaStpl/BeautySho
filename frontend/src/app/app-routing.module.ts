@@ -9,6 +9,7 @@ import { FullComponent } from './layouts/full/full.component';
 import { DetailProductComponent } from './material-component/dialog/detail-product/detail-product.component';
 import { OrderComponent } from './order/order.component';
 import { ProductItemComponent } from './product-item/product-item.component';
+import { ProfilComponent } from './profil/profil.component';
 import { RouteGuardService } from './services/route-guard.service';
 import { SignupCmsComponent } from './signup-cms/signup-cms.component';
 import { TrackingComponent } from './tracking/tracking.component';
@@ -35,7 +36,7 @@ const routes: Routes = [
                     () => import('./material-component/material.module').then(m => m.MaterialComponentsModule),
                 canActivate: [RouteGuardService],
                 data: {
-                    expectedRole: ['admin', 'user']
+                    expectedRole: ['admin']
                 }
             },
             {
@@ -43,7 +44,7 @@ const routes: Routes = [
                 loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
                 canActivate: [RouteGuardService],
                 data: {
-                    expectedRole: ['admin', 'user']
+                    expectedRole: ['admin']
                 }
             }
         ]
@@ -59,6 +60,10 @@ const routes: Routes = [
     {
         path: 'checkout/get',
         component: CheckoutComponent,
+        canActivate: [RouteGuardService],
+        data: {
+            expectedRole: ['user']
+        }
     },
     {
         path: 'order/get/:id',
@@ -71,6 +76,10 @@ const routes: Routes = [
     {
         path: 'tracking/get/:receipt',
         component: TrackingComponent,
+    },
+    {
+        path: 'profil',
+        component: ProfilComponent,
     },
     { path: '**', component: HomeComponent }
 ];

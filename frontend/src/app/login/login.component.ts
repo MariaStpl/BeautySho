@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
             this.ngxService.stop();
             this.dialogRef.close();
             localStorage.setItem('token', response.token);
-            this.router.navigate(['/beautyshop/dashboard']);
+            //this.router.navigate(['/'+ data.email])
         }, (error) =>{
             this.ngxService.stop();
             if(error.error?.message)

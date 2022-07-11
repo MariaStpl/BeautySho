@@ -23,7 +23,6 @@ export class OrderComponent implements OnInit {
     responseMessage: any;
     public items: any = [];
     itemArray: any = [];
-    public totalItem: number = 0;
     data: any;
     manageOrderForm: any = FormGroup;
 
@@ -42,9 +41,7 @@ export class OrderComponent implements OnInit {
             console.log(params['id'])
             this.cartItem(params.id)
         }) 
-        this.cartService.getCart().subscribe((response: any) => {
-            this.totalItem = response.length;
-        })
+
         this.manageOrderForm = this.formBuilder.group({
             receipt: [null, [Validators.required]]
         })
@@ -86,26 +83,6 @@ export class OrderComponent implements OnInit {
         console.log(this.orderList);
 
 
-    }
-
-    signupAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(SignupComponent, dialogConfig);
-    }
-    forgotPasswordAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(ForgotPasswordComponent, dialogConfig);
-    }
-    loginAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(LoginComponent, dialogConfig);
-    }
-
-    cartAction() {
-        this.router.navigate(['/cart'])
     }
 
 }

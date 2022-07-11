@@ -27,6 +27,8 @@ import { TrackingComponent } from './tracking/tracking.component';
 import { CmsComponent } from './cms/cms.component';
 import { SignupCmsComponent } from './signup-cms/signup-cms.component';
 import { FogotPasswordCmsComponent } from './fogot-password-cms/fogot-password-cms.component';
+import { ProfilComponent } from './profil/profil.component';
+import { HeaderHomeComponent } from './header-home/header-home.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -61,6 +63,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CmsComponent,
     SignupCmsComponent,
     FogotPasswordCmsComponent,
+    ProfilComponent,
+    HeaderHomeComponent,
    ],
   imports: [
     BrowserModule,

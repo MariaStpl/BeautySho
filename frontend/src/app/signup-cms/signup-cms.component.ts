@@ -41,7 +41,7 @@ export class SignupCmsComponent implements OnInit {
           password: formData.password,
       }
 
-      this.userService.signup(data).subscribe((response:any)=>{
+      this.userService.signupAdmin(data).subscribe((response:any)=>{
           this.ngxService.stop();
           this.responseMessage = response?.message;
           this.snackbarService.openSnackBar(this.responseMessage,"");

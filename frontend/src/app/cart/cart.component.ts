@@ -36,8 +36,6 @@ export class CartComponent implements OnInit {
         private cartService: CartService,
         private ngxService: NgxUiLoaderService,
         private snackbarService: SnackbarService,
-        private billService:BillService,
-        private checkoutService:CheckoutService,
         private router:Router) { }
 
     ngOnInit(): void {
@@ -58,7 +56,6 @@ export class CartComponent implements OnInit {
                 return data
             })
             this.cartContents = this.cartList[0];
-            this.ngxService.stop();
             this.dataSource = new MatTableDataSource(response)
         }, (error: any) => {
             this.ngxService.stop();
@@ -166,10 +163,6 @@ export class CartComponent implements OnInit {
         })
 
     }
-    // private qtyUpdated(quantity: number, i: number) {
-    //     this.cartList[i].quantity = quantity;
-    //     this.cartService.setCartData(this.cartList);
-    // }
 
     getSumVal(){
         this.cartService.getSum().subscribe((response:any)=>{
@@ -182,32 +175,7 @@ export class CartComponent implements OnInit {
 
     checkoutCart(){
         this.router.navigate(['/checkout/get'])
-        
         this.ngOnInit()
-        //this.router.navigateByUrl(`/detail/getProductsItem/${id}`)
-    }
-
-
-    signupAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(SignupComponent, dialogConfig);
-
-    }
-    forgotPasswordAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(ForgotPasswordComponent, dialogConfig);
-
-    }
-    loginAction() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.width = "550px";
-        this.dialog.open(LoginComponent, dialogConfig);
-
-    }
-    shipAction() {
-        this.router.navigate(['/order/getAll'])
     }
 
 }
