@@ -1,6 +1,7 @@
 const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -8,16 +9,19 @@ require('dotenv').config();
 var auth = require('../services/authentication');
 var checkRole = require('../services/checkRole');
 
-router.post('/signupAdmin', (req, res) => {
+router.post('/signupAdmin', async (req, res) => {
     let user = req.body;
+    var values = user.password;
+    const salt = await bcrypt.genSalt(10);
+    var value = await bcrypt.hash(values,salt)
     query = "select email, password, role, status from user where email=?";
     connection.query(query, [user.email], (err, results) => {
         if (!err) {
             if (results.length <= 0) {
                 query = "insert into user(name, contactNumber, email, password, status, role) values(?,?,?,?,'true','admin')"
-                connection.query(query, [user.name, user.contactNumber, user.email, user.password], (err, results) => {
+                connection.query(query, [user.name, user.contactNumber, user.email, value], (err, results) => {
                     if (!err) {
-                        return res.status(200).json({ message: "Successfully Registered" })
+                        return res.status(200).json(results)
                     } else {
                         return res.status(500).json(err);
                     }
@@ -31,14 +35,17 @@ router.post('/signupAdmin', (req, res) => {
     })
 })
 
-router.post('/signup', (req, res) => {
+router.post('/signup', async (req, res) => {
     let user = req.body;
+    var values = user.password;
+    const salt = await bcrypt.genSalt(10);
+    var value = await bcrypt.hash(values,salt)
     query = "select email, password, role, status from user where email=?";
     connection.query(query, [user.email], (err, results) => {
         if (!err) {
             if (results.length <= 0) {
                 query = "insert into user(name, contactNumber, email, password, status, role) values(?,?,?,?,'false','user')"
-                connection.query(query, [user.name, user.contactNumber, user.email, user.password], (err, results) => {
+                connection.query(query, [user.name, user.contactNumber, user.email, value], (err, results) => {
                     if (!err) {
                         return res.status(200).json({ message: "Successfully Registered" })
                     } else {
@@ -56,17 +63,18 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
     const user = req.body;
-    query = "select email, password, role, status from user where email=?";
-    connection.query(query, [user.email], (err, results) => {
+    query = "select email, password, contactNumber, role, status from user where email=?";
+    connection.query(query, [user.email], async (err, results) => {
+        lovley = await bcrypt.compare(user.password, results[0].password);
         if (!err) {
-            if (results.length <= 0 || results[0].password != user.password) {
+            if (results.length <= 0 || lovley === false) {
                 return res.status(401).json({ message: "Incorect Username or Password" });
             } else if (results[0].status === 'false') {
                 return res.status(401).json({ message: "Wait for Admin Approval" });
-            } else if (results[0].password == user.password) {
+            } else if (lovley === true) {
                 const response = { email: results[0].email, role: results[0].role }
                 const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '8h' });
-                res.status(200).json({ token: accessToken });
+                res.status(200).json({ token: accessToken, email: results[0].email, contactNumber: results[0].contactNumber, role: results[0].role});
             } else {
                 return res.status(400).json({ message: "Something went wrong. Please try again later" });
             }
