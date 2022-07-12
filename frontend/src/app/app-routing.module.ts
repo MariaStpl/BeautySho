@@ -78,7 +78,7 @@ const routes: Routes = [
         component: TrackingComponent,
     },
     {
-        path: 'profil',
+        path: 'profil/get/:id',
         component: ProfilComponent,
     },
     { path: '**', component: HomeComponent }

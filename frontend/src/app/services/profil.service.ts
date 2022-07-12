@@ -10,8 +10,9 @@ export class ProfilService {
 
     constructor(private httpClient: HttpClient)  { }
 
-  get() {
+  get(id:any) {
     return this.httpClient.get(this.url +
-        "/profil/get")
+        "/profil/get/" + id)
 }
+
 }

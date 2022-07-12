@@ -4,6 +4,7 @@ import { ProfilService } from '../services/profil.service';
 import { SnackbarService } from '../services/snackbar.service';
 import { GlobalConstants } from '../shared/global-constants';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -16,14 +17,19 @@ export class ProfilComponent implements OnInit {
 
   constructor(private profilService:ProfilService,
     private ngxService:NgxUiLoaderService,
+    private route: ActivatedRoute,
     private snackbarService:SnackbarService) { }
 
   ngOnInit(): void {
-    this.profilDisplay()
+    this.route.params.subscribe(params => {
+        console.log(params) //log the entire params object
+        console.log(params['id'])
+        this.profilDisplay(params.id)
+    }) 
   }
 
-  profilDisplay() {
-    this.profilService.get().subscribe((response: any) => {
+  profilDisplay(id: any) {
+    this.profilService.get(id).subscribe((response: any) => {
         this.ngxService.stop();
         this.profilView = response.map((data: any) => {
             // if (data.itemImage) {

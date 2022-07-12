@@ -14,15 +14,15 @@
         
   
         <mat-menu #profile="matMenu" class="mymegamenu">
-          <button mat-menu-item (click)="profil()">
-            <mat-icon>perm_identity</mat-icon>Profil
-          </button>
-          <button mat-menu-item (click)="changePassword()">
-            <mat-icon>password</mat-icon>Change Password
-          </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>Sign Out
-          </button>
+            <button mat-menu-item (click)="profilView(profilId.id)">
+                <mat-icon>perm_identity</mat-icon>Profil
+            </button>
+            <button mat-menu-item (click)="changePassword()">
+                <mat-icon>password</mat-icon>Change Password
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>Sign Out
+            </button>
         </mat-menu>
       </ul>
     </nav>
