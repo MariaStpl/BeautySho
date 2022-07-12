@@ -51,11 +51,11 @@ export class AppHeaderComponent {
     }
     
     detailOrder(checkoutId:any){
-        this.router.navigate(['/beautyshop/orders']);
         var data ={
             checkoutId:checkoutId
         }
         this.notificationService.update(data).subscribe((response:any)=>{
+            this.router.navigate(['/beautyshop/orders']);
         }, (error:any)=>{
             if (error.error?.message) {
                 this.responseMessage = error.error?.message;

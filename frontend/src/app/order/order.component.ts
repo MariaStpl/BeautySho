@@ -30,9 +30,7 @@ export class OrderComponent implements OnInit {
         private ngxService: NgxUiLoaderService,
         private snackbarService: SnackbarService,
         private route: ActivatedRoute,
-        private dialog: MatDialog,
         private router: Router,
-        private cartService: CartService,
         private formBuilder: FormBuilder) { }
 
     ngOnInit(): void {

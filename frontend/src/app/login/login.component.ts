@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
             this.ngxService.stop();
             this.dialogRef.close();
             localStorage.setItem('token', response.token);
-            //this.router.navigate(['/'+ data.email])
         }, (error) =>{
             this.ngxService.stop();
             if(error.error?.message)
@@ -54,6 +53,7 @@ export class LoginComponent implements OnInit {
                 this.responseMessage = GlobalConstants.genericError;
             }
             this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+            
         })
     }
 }

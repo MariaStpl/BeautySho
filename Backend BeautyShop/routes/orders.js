@@ -8,7 +8,7 @@ var checkRole = require('../services/checkRole');
 
 router.get('/get', (req, res, next) => {
     var order = [] ;var fullOrder = []
-    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt, keterangan, createDate from checkout";
+    var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt, keterangan, createDate from checkout order by id DESC";
     connection.query(queryCheckout, (err, resultsCheckout) => {
         if (resultsCheckout) {
             order = resultsCheckout.map(v => Object.assign({}, v))
