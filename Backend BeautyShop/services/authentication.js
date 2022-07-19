@@ -12,7 +12,8 @@ function authenticateToken(req,res,next){
             return res.sendStatus(403);
         }
         res.locals = result;
-        next();        
+        next()
+             
     })
 }
 

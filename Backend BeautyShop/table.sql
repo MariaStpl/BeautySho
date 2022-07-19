@@ -9,6 +9,8 @@ create table user(
     UNIQUE (email)
 );
 
+alter table user add reset_token varchar(50) UNIQUE;
+
 insert into user(name, contactNumber, email, password, status, role) values('Admin', '081243516781', 'admin@gmail.com', 'admin', 'true', 'admin');
 
 create table category(

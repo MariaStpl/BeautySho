@@ -63,7 +63,7 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', (req, res) => {
     const user = req.body;
-    query = "select email, password, contactNumber, role, status from user where email=?";
+    query = "select id, email, password, contactNumber, role, status from user where email=?";
     connection.query(query, [user.email], async (err, results) => {
         lovley = await bcrypt.compare(user.password, results[0].password);
         if (!err) {
@@ -72,9 +72,9 @@ router.post('/login', (req, res) => {
             } else if (results[0].status === 'false') {
                 return res.status(401).json({ message: "Wait for Admin Approval" });
             } else if (lovley === true) {
-                const response = { email: results[0].email, role: results[0].role }
+                const response = { id:results[0].id, email: results[0].email, contactNumber: results[0].contactNumber, role: results[0].role }
                 const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '8h' });
-                res.status(200).json({ token: accessToken, email: results[0].email, contactNumber: results[0].contactNumber, role: results[0].role});
+                res.status(200).json({ token: accessToken, id:results[0].id, email: results[0].email, contactNumber: results[0].contactNumber, role: results[0].role});
             } else {
                 return res.status(400).json({ message: "Something went wrong. Please try again later" });
             }
@@ -92,19 +92,24 @@ var transporter = nodemailer.createTransport({
     }
 })
 
-router.post('/forgotPassword', (req, res) => {
+router.post('/forgotPassword', async (req, res) => {
     const user = req.body;
-    query = "Select email, password from user where email=?";
-    connection.query(query, [user.email], (err, results) => {
+    var c = Math.round(100 + (Math.random() * 99999));
+    var numberOrder = c.toString()
+    queryUpdate = "update user set reset_token = ? where email= ?";
+    connection.query(queryUpdate, [numberOrder, user.email], (err, resultsUpdate) => {
+    })   
+    querySelect = "Select email, reset_token from user where email=?";
+        connection.query(querySelect, await [user.email], (err, resultsSelect) => {    
         if (!err) {
-            if (results.length <= 0) {
+            if (resultsSelect.length <= 0) {
                 return res.status(200).json({ message: "Password sent succesfully to your email." });
             } else {
                 var mailOptions = {
                     from: process.env.EMAIL,
-                    to: results[0].email,
-                    subject: 'Password by Beauty Shop Management System',
-                    html: '<p><b> Your Login cetails for Beauty Shop Management System</b><br><b>Email: </b>' + results[0].email + '<br><b>Password: </b>' + results[0].password + '<br><a href="http://localhost:4200/">Click here to login</p>'
+                    to: resultsSelect[0].email,
+                    subject: 'Reset your password',
+                    html: '<p>Recently you requested to reset your Beauty Shop Account.<br>' + '<b>Email: </b>'+resultsSelect[0].email + '<br><b>Token: </b>'+ resultsSelect[0].reset_token + '<br>Click the button below and follow the reset instructions.<br><br>'+'<a href="http://localhost:4200/user/resetPassword"><input type=button style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A); color:white; border-radius: 4px; border:none; padding:7px" value="Reset Password"></a></p>'
                 };
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
@@ -118,14 +123,37 @@ router.post('/forgotPassword', (req, res) => {
         } else {
             return res.status(500).json(err);
         }
-    })
+    }) 
+   
+    
 })
+
+
 
 router.get('/get', auth.authenticateToken, checkRole.checkRole, (req, res) => {
     var query = "select id, name, email, contactNumber, status from user where role='user'";
     connection.query(query, (err, results) => {
         if (!err) {
             return res.status(200).json(results);
+        }
+        else {
+            return res.status(500).json(err);
+        }
+    })
+})
+
+router.patch('/resetPassword', async (req, res) => {
+    let user = req.body;
+    var values = user.password;
+    const salt = await bcrypt.genSalt(10);
+    var value = await bcrypt.hash(values,salt)
+    var query = "update user set password=? where reset_token=?";
+    connection.query(query, [value, user.reset_token], (err, results) => {
+        if (!err) {
+            if (results.affectedRows == 0) {
+                return res.status(404).json({ message: "User token does not exist" });
+            }
+            return res.status(200).json({ message: "User create new password Successfuly" });
         }
         else {
             return res.status(500).json(err);
@@ -150,7 +178,7 @@ router.patch('/update', auth.authenticateToken, checkRole.checkRole, (req, res) 
 })
 
 router.get('/checkToken', auth.authenticateToken, (req, res) => {
-    return res.status(200).json({ message: "true" });
+    return res.status(200).json(res.locals);
 })
 
 router.post('/changePassword', auth.authenticateToken, (req, res) => {
