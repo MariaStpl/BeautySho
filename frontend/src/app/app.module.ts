@@ -29,6 +29,7 @@ import { SignupCmsComponent } from './signup-cms/signup-cms.component';
 import { FogotPasswordCmsComponent } from './fogot-password-cms/fogot-password-cms.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HeaderHomeComponent } from './header-home/header-home.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -65,6 +66,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FogotPasswordCmsComponent,
     ProfilComponent,
     HeaderHomeComponent,
+    ResetPasswordComponent,
    ],
   imports: [
     BrowserModule,
