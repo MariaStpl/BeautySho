@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
             this.ngxService.stop();
             this.dialogRef.close();
             localStorage.setItem('token', response.token);
+            window.location.reload();
         }, (error) =>{
             this.ngxService.stop();
             if(error.error?.message)

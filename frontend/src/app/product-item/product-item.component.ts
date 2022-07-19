@@ -91,8 +91,7 @@ export class ProductItemComponent implements OnInit {
             this.singleProduct
             this.snackbarService.openSnackBar(GlobalConstants.productAdded, "success");
         })
-        this.ngOnInit()
-        
+        window.location.reload();
         console.log(this.singleProduct.itemPrice);
         
         
