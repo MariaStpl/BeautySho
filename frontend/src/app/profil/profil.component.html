@@ -1,5 +1,28 @@
-<ng-container *ngFor="let element of profilView; let i = index">
-    {{element.name}}
-    {{element.email}}
-    {{element.contactNumber}}
-</ng-container>
+<app-header-home></app-header-home>
+<div class="container">
+  <mat-card>
+    <div class="image-section">
+      <img src="../../assets/img/user.png" />
+    </div>
+    <table
+      class="detail-section"
+      *ngFor="let element of profilView; let i = index"
+    >
+      <tr>
+        <td width="130px" valign="top" class="textt">Nama</td>
+        <td width="10px">:</td>
+        <td style="font-weight: bold">{{ element.name }}</td>
+      </tr>
+      <tr>
+        <td width="130px" valign="top" class="textt">Email</td>
+        <td width="10px">:</td>
+        <td style="font-weight: bold">{{ element.email }}</td>
+      </tr>
+      <tr>
+        <td width="130px" valign="top" class="textt">Contact Number</td>
+        <td width="10px">:</td>
+        <td style="font-weight: bold">{{ element.contactNumber }}</td>
+      </tr>
+    </table>
+  </mat-card>
+</div>

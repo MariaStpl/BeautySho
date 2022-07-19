@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section{
+    width: 20%;
+    img{
+        width: 100px;
+        height: 100px;
+    }}
+
+.detail-section{
+    width: 80%;
+}
+
+mat-card{
+    width: 50%;
+    margin-top: 180px;
+    display: flex;
+}
