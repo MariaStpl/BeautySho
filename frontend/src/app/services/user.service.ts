@@ -56,4 +56,20 @@ export class UserService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
+
+  editProfil(data: any) {
+    return this.httpClient.put(this.url + '/profil/editProfil', data);
+  }
+
+  getAddressByUser(userID: any) {
+    return this.httpClient.get(this.url + '/user/getByUser/' + userID);
+  }
+
+  addAddress(data: any) {
+    return this.httpClient.post(this.url + '/user/addAddress', data);
+  }
+
+  updateAddress(data: any) {
+    return this.httpClient.put(this.url + '/user/updateAddress', data);
+  }
 }

@@ -30,6 +30,7 @@ import { FogotPasswordCmsComponent } from './fogot-password-cms/fogot-password-c
 import { ProfilComponent } from './profil/profil.component';
 import { HeaderHomeComponent } from './header-home/header-home.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { EditProfilComponent } from './edit-profil/edit-profil.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -67,6 +68,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ProfilComponent,
     HeaderHomeComponent,
     ResetPasswordComponent,
+    EditProfilComponent,
    ],
   imports: [
     BrowserModule,
