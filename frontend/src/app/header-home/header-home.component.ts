@@ -104,8 +104,9 @@ export class HeaderHomeComponent implements OnInit {
       (user) => {
         dialogRef.close();
         localStorage.clear();
-        this.router.navigate(['/']);
-        window.location.reload();
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
         this.token();
       }
     );
