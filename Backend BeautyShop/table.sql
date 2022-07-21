@@ -114,6 +114,14 @@ create table history(
     primary key(id)
 );
 
+
+create table userAddress(
+    id int NOT NULL AUTO_INCREMENT,
+    address varchar(255),
+    userId integer,
+    primary key(id)
+);
+
 ALTER TABLE checkout ADD status varchar(50) NOT NULL;
 ALTER TABLE checkout ADD address varchar(500) NOT NULL;
 ALTER TABLE checkout ADD shipping_option varchar(50) NOT NULL;
