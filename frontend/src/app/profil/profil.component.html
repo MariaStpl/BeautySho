@@ -1,28 +1,44 @@
 <app-header-home></app-header-home>
 <div class="container">
-  <mat-card>
-    <div class="image-section">
-      <img src="../../assets/img/user.png" />
+  <mat-card *ngFor="let element of profilView; let i = index">
+    <div class="btn">
+      <button class="float" mat-flat-button [matMenuTriggerFor]="edit_profil">
+        <mat-icon style="color: #e53935;">more_horiz</mat-icon>
+      </button>
+
+      <mat-menu #edit_profil="matMenu">
+        <button mat-menu-item (click)="editProfil(element)">Edit Profil</button>
+      </mat-menu>
     </div>
-    <table
-      class="detail-section"
-      *ngFor="let element of profilView; let i = index"
-    >
-      <tr>
-        <td width="130px" valign="top" class="textt">Nama</td>
-        <td width="10px">:</td>
-        <td style="font-weight: bold">{{ element.name }}</td>
-      </tr>
-      <tr>
-        <td width="130px" valign="top" class="textt">Email</td>
-        <td width="10px">:</td>
-        <td style="font-weight: bold">{{ element.email }}</td>
-      </tr>
-      <tr>
-        <td width="130px" valign="top" class="textt">Contact Number</td>
-        <td width="10px">:</td>
-        <td style="font-weight: bold">{{ element.contactNumber }}</td>
-      </tr>
-    </table>
+    <div class="image-section"><img *ngIf="element.profil_image != null" class="rounded-circle img-fluid" src="{{element.profil_image}}" alt="" />
+      <img *ngIf="element.profil_image === null" src="../../assets/img/user.png" />
+    </div>
+    <div class="detail" *ngFor="let element of profilView; let i = index">
+      <div class="name">
+        <b style="color: #e53935">{{ element.name }}</b>
+      </div>
+      <table class="detail-section">
+        <tr>
+          <td width="130px" class="textt">Nama</td>
+          <td width="10px">:</td>
+          <td style="font-weight: bold">{{ element.name }}</td>
+        </tr>
+        <tr>
+          <td width="130px" class="textt">Email</td>
+          <td width="10px">:</td>
+          <td style="font-weight: bold">{{ element.email }}</td>
+        </tr>
+        <tr>
+          <td width="130px" class="textt">Contact Number</td>
+          <td width="10px">:</td>
+          <td style="font-weight: bold">{{ element.contactNumber }}</td>
+        </tr>
+        <tr>
+          <td width="130px" class="textt">Role</td>
+          <td width="10px">:</td>
+          <td style="font-weight: bold; color: #e53935">{{ element.role }}</td>
+        </tr>
+      </table>
+    </div>
   </mat-card>
 </div>
