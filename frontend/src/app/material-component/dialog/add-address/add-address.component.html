@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row">
+    <span class="title-center">{{ dialogData.action }} Product</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addressForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row-wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" required />
+          <mat-error
+            *ngIf="
+              addressForm.controls.address.touched &&
+              addressForm.controls.address.invalid
+            "
+          >
+            <span *ngIf="addressForm.controls.address.errors.required"
+              >This Field is mandatory.</span
+            >
+            <span *ngIf="addressForm.controls.address.errors.pattern"
+              >This Field is invalid.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit()"
+    [disabled]="!(addressForm.valid && addressForm.dirty)"
+  >
+    {{ action }}
+  </button>
+  <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>
