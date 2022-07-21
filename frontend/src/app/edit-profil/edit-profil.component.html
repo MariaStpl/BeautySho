@@ -1,0 +1,80 @@
+<div class="Edit">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">{{ dialogData.action }} Profil</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="profilForm">
+      <div fxFlex fxLayout="column">
+        <div fxLayout="row-wrap">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error
+              *ngIf="
+                profilForm.controls.name.touched &&
+                profilForm.controls.name.invalid
+              "
+            >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Contact Number</mat-label>
+            <input matInput formControlName="contactNumber" />
+            <mat-error
+              *ngIf="
+                profilForm.controls.contactNumber.touched &&
+                profilForm.controls.contactNumber.invalid
+              "
+            >
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+        <div fxLayout="row-wrap">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" />
+                <mat-error
+                  *ngIf="
+                    profilForm.controls.email.touched &&
+                    profilForm.controls.email.invalid
+                  "
+                >
+                </mat-error>
+              </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="role" />
+            <mat-error
+              *ngIf="
+                profilForm.controls.role.touched &&
+                profilForm.controls.role.invalid
+              "
+            >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-label>Profil Photo</mat-label>
+            <input type="file" formControlName="profil_image" (change)="getFile($event)" #fileUpload>
+      </div>
+    </form>
+    </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="center">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="handleSubmit()"
+      [disabled]="!(profilForm.valid && profilForm.dirty)"
+    >
+      {{ action }}
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close>
+      Close
+    </button>
+  </mat-dialog-actions>
