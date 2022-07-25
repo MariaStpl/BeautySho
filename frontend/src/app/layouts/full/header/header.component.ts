@@ -61,7 +61,9 @@ export class AppHeaderComponent {
     };
     this.notificationService.update(data).subscribe(
       (response: any) => {
-        this.router.navigate(['/beautyshop/orders']);
+        this.router.navigate(['/beautyshop/orders']).then(() => {
+            window.location.reload();
+          });
       },
       (error: any) => {
         if (error.error?.message) {
