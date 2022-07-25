@@ -274,46 +274,51 @@ router.post("/addAddress", auth.authenticateToken, (req, res) => {
   var query = "insert into userAddress (address, userId) values(?,?)";
   connection.query(query, [user.address, user.userId], (err, results) => {
     if (!err) {
-      return res.status(200).json(results);
+      return res.status(200).json({ message: "Success Add New Address" });
     } else {
       return res.status(500).json(err);
     }
   });
 });
 
-// router.patch(
-//   "/updateAddress",
-//   auth.authenticateToken,
-//   checkRole.checkRole,
-//   (req, res, next) => {
-//     let product = req.body;
-//     var query =
-//       "update product set name=?, categoryId=?, description=?, price=? where id=?";
-//     connection.query(
-//       query,
-//       [
-//         product.name,
-//         product.categoryId,
-//         product.description,
-//         product.price,
-//         product.id,
-//       ],
-//       (err, results) => {
-//         if (!err) {
-//           if (results.affectedRows == 0) {
-//             return res
-//               .status(404)
-//               .json({ message: "Product id does not found" });
-//           }
-//           return res
-//             .status(200)
-//             .json({ message: "Product Updated Successfully" });
-//         } else {
-//           return res.status(500).json(err);
-//         }
-//       }
-//     );
-//   }
-// );
+router.delete(
+  "/deleteAddress/:id",
+  auth.authenticateToken,
+  (req, res, next) => {
+    const id = req.params.id;
+    var query = "delete from userAddress where id=?";
+    connection.query(query, [id], (err, results) => {
+      if (!err) {
+        if (results.affectedRows == 0) {
+          return res.status(404).json({ message: "Address id does not found" });
+        }
+        return res
+          .status(200)
+          .json({ message: "Address Deleted Successfully" });
+      } else {
+        return res.status(500).json(err);
+      }
+    });
+  }
+);
+
+router.patch(
+    "/updateAddress",
+    auth.authenticateToken,
+    (req, res) => {
+      let user = req.body;
+      var query = "update userAddress set address=? where id=?";
+      connection.query(query, [user.address, user.id], (err, results) => {
+        if (!err) {
+          if (results.affectedRows == 0) {
+            return res.status(404).json({ message: "User id does not exist" });
+          }
+          return res.status(200).json({ message: "User Updated Successfuly" });
+        } else {
+          return res.status(500).json(err);
+        }
+      });
+    }
+  );
 
 module.exports = router;

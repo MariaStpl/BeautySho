@@ -70,6 +70,10 @@ export class UserService {
   }
 
   updateAddress(data: any) {
-    return this.httpClient.put(this.url + '/user/updateAddress', data);
+    return this.httpClient.patch(this.url + '/user/updateAddress', data);
+  }
+
+  deleteAddress(id: any) {
+    return this.httpClient.delete(this.url + '/user/deleteAddress/' + id);
   }
 }
