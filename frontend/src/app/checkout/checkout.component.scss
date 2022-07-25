@@ -149,8 +149,14 @@ mat-card {
 }
 
 .btnn{
-    margin: 5px;
+    margin: 40px 0px 40px 0px;
     justify-content:center;
     align-items: center;
     display: flex;
+}
+
+.btn{
+    margin: 10px 5px 10px 5px;
+    line-height: 28px;
+    font-size: 12px;
 }

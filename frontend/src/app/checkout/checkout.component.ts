@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { LoginComponent } from '../login/login.component';
 import { AddAddressComponent } from '../material-component/dialog/add-address/add-address.component';
+import { ConfirmationComponent } from '../material-component/dialog/confirmation/confirmation.component';
+import { ViewAddressComponent } from '../material-component/dialog/view-address/view-address.component';
 import { CartService } from '../services/cart.service';
 import { CheckoutService } from '../services/checkout.service';
 import { NotificationService } from '../services/notification.service';
@@ -99,7 +101,7 @@ export class CheckoutComponent implements OnInit {
     this.router.events.subscribe(() => {
       dialogRef.close();
     });
-    const sub = dialogRef.componentInstance.onAddProduct.subscribe(
+    const sub = dialogRef.componentInstance.onAddAddress.subscribe(
       (response) => {
         this.getAddress();
       }
@@ -120,7 +122,6 @@ export class CheckoutComponent implements OnInit {
       return true;
     else return false;
   }
-  navigate(id: any) {}
 
   submitAction() {
     this.ngxService.start();
@@ -197,4 +198,18 @@ export class CheckoutComponent implements OnInit {
   cart() {
     this.router.navigate(['/cart']);
   }
+
+  handleViewAction(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width="70%";
+    const dialogRef = this.dialog.open(ViewAddressComponent, dialogConfig);
+    this.router.events.subscribe(()=>{
+        dialogRef.close()
+    })
+    const sub = dialogRef.componentInstance.onViewAddress.subscribe(
+        (response) => {
+          this.getAddress();
+        }
+      );
+}
 }
