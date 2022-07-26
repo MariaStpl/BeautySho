@@ -14,4 +14,19 @@ export class DashboardService {
       return this.httpClient.get(this.url +
          "/dashboard/details/");
   }
+
+  getOrders() {
+    return this.httpClient.get(this.url +
+        "/dashboard/get/")
+}
+
+topProduct() {
+    return this.httpClient.get(this.url +
+        "/dashboard/topProduct/")
+}
+
+topItem() {
+    return this.httpClient.get(this.url +
+        "/dashboard/topItem/")
+}
 }
