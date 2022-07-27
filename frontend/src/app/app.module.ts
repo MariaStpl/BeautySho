@@ -31,6 +31,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { HeaderHomeComponent } from './header-home/header-home.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -80,6 +81,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FlexLayoutModule,
     SharedModule,
     HttpClientModule,
+    ChartsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [HttpClientModule,{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorInterceptor, multi:true}],
