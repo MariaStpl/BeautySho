@@ -4,8 +4,15 @@
 
 <mat-menu #notif="matMenu" class="menu">
     <div *ngFor="let notif of notifList">
-        <span  class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)">{{notif.name}} {{notif.notif}}
-            <b style="color: #e53935;">({{notif.statusNotif}})</b></span>
+        <div  *ngIf="notif.statusNotif === 'Read'">
+            <div class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)">{{notif.name}} {{notif.notif}}
+            </div>
+        </div>
+        <div *ngIf="notif.statusNotif === 'Unread'">
+            <div class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)"><b>{{notif.name}} {{notif.notif}}</b>
+            </div>
+        </div>
+        
     </div>
 </mat-menu>
 
