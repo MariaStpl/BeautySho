@@ -34,6 +34,7 @@ export class CheckoutComponent implements OnInit {
   data: any;
   public list: any;
   addressdata: any = [];
+  userId:any;
 
   constructor(
     private checkoutService: CheckoutService,
@@ -126,37 +127,41 @@ export class CheckoutComponent implements OnInit {
   submitAction() {
     this.ngxService.start();
     var formData = this.manageOrderForm.value;
-    var data = {
-      name: formData.name,
-      email: formData.email,
-      contactNumber: formData.contactNumber,
-      paymentMethod: formData.paymentMethod,
-      address: formData.address,
-      shipping_option: formData.shipping_option,
-    };
-
-    this.checkoutService.post(data).subscribe(
-      (response: any) => {
-        console.log(response);
-        this.router.navigate(['/order/get/' + response.insertId]);
-
-        this.ngxService.stop();
-        this.checkoutService.removeAllCart().subscribe((response: any) => {
-          this.cartItem();
-        });
-      },
-      (error: any) => {
-        if (error.error?.message) {
-          this.responseMessage = error.error?.message;
-        } else {
-          this.responseMessage = GlobalConstants.genericError;
-        }
-        this.snackbarService.openSnackBar(
-          this.responseMessage,
-          GlobalConstants.error
-        );
-      }
-    );
+    this.userService.checkToken().subscribe(
+        (response: any) => {
+            var data = {
+                name: formData.name,
+                email: formData.email,
+                contactNumber: formData.contactNumber,
+                paymentMethod: formData.paymentMethod,
+                address: formData.address,
+                shipping_option: formData.shipping_option,
+                userId:response.id, 
+            };
+            console.log(data);
+            this.checkoutService.post(data).subscribe(
+              (response: any) => {
+                console.log(response);
+                // this.router.navigate(['/order/get/' + response.insertId]);
+                this.router.navigate(['/order/get/' + data.userId]);
+                this.ngxService.stop();
+                this.checkoutService.removeAllCart().subscribe((response: any) => {
+                  this.cartItem();
+                });
+              },
+              (error: any) => {
+                if (error.error?.message) {
+                  this.responseMessage = error.error?.message;
+                } else {
+                  this.responseMessage = GlobalConstants.genericError;
+                }
+                this.snackbarService.openSnackBar(
+                  this.responseMessage,
+                  GlobalConstants.error
+                );
+              }
+            );
+        })
   }
   viewCart() {
     this.checkoutService.get().subscribe(
