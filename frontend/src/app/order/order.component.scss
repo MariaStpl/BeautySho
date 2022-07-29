@@ -99,12 +99,25 @@ h6 {
 
     .content1 {
         max-height: 250px;
+        margin-top: 10px;
         display: flex;
-        margin-top: 15px;
         overflow: auto;
         overflow-x: auto;
         overflow-y: auto;
-    }
+      }
+      
+      .content1::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      .content1::-webkit-scrollbar-track {
+        background-color: #F5F5F5;
+      }
+      
+      .content1::-webkit-scrollbar-thumb {
+        background-color: rgb(223, 223, 223);
+        box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+      }
 
     .data-view-container {
         width: 33%;
