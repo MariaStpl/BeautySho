@@ -65,6 +65,10 @@ export class UserService {
     return this.httpClient.get(this.url + '/user/getByUser/' + userID);
   }
 
+  getOrderByUser(userId: any) {
+    return this.httpClient.get(this.url + '/order/getOrderByUser/' + userId);
+  }
+
   addAddress(data: any) {
     return this.httpClient.post(this.url + '/user/addAddress', data);
   }
