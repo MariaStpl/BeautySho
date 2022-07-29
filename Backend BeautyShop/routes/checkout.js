@@ -36,9 +36,9 @@ router.post('/post', (req, res, next) => {
 
     var numberOrder = 'ORD-' + time + '-' + c.toString()
 
-    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, keterangan, createDate, receipt) values (?,?,?,?,?,?,'Waiting Confirmation',now(),NULL,NULL,NULL,NULL,NULL,?)";
+    var query = "insert into checkout (name,email,contactNumber,paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, keterangan, createDate, receipt, userId) values (?,?,?,?,?,?,'Waiting Confirmation',now(),NULL,NULL,NULL,NULL,NULL,?,?)";
     let checkout = req.body;
-    connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option, numberOrder], (err, results) => {
+    connection.query(query, [checkout.name, checkout.email, checkout.contactNumber, checkout.paymentMethod, checkout.address, checkout.shipping_option, numberOrder, checkout.userId], (err, results) => {
         var query = "INSERT INTO orderCart (checkoutId, itemId, productId, quantity, itemPrice, total) SELECT ?, cart.itemId, cart.productId, cart.quantity, cart.itemPrice, cart.total FROM cart"
         connection.query(query, results.insertId, (err, results) => {
         })
