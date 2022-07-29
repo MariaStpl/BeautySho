@@ -4,12 +4,12 @@ const router = express.Router();
 var auth = require("../services/authentication");
 var checkRole = require("../services/checkRole");
 
-router.get('/get/:id', (req, res, next) => {
+router.get('/get/:userId', (req, res, next) => {
     var order = [] ;var fullOrder = []
-    const id = req.params.id;
-    console.log(req.params.id);
-    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt from checkout WHERE id=?  order by id DESC";
-    connection.query(queryCheckout, [id], (err, resultsCheckout) => {
+    const userId = req.params.userId;
+    console.log(req.params.userId);
+    var queryCheckout = "SELECT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt from checkout WHERE userId=? order by id DESC";
+    connection.query(queryCheckout, [userId], (err, resultsCheckout) => {
         
         if (resultsCheckout) {
             order = resultsCheckout.map(v => Object.assign({}, v))
