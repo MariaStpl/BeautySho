@@ -196,6 +196,7 @@ export class DashboardComponent implements AfterViewInit {
             data: values
         };
         dialogConfig.width = "100%";
+        dialogConfig.maxHeight = "100%";
         const dialogRef = this.dialog.open(ViewBillOrdersComponent, dialogConfig);
         this.router.events.subscribe(() => {
             dialogRef.close();

@@ -56,6 +56,7 @@ export class OrdersComponent implements OnInit {
             data:values
         };
         dialogConfig.width="100%";
+        dialogConfig.maxHeight = "100%";
         const dialogRef = this.dialog.open(ViewBillOrdersComponent, dialogConfig);
         this.router.events.subscribe(()=>{
             dialogRef.close();
@@ -75,6 +76,7 @@ export class OrdersComponent implements OnInit {
             data:values
         }
         dialogConfig.width = '850px';
+        dialogConfig.maxHeight = "100%";
         const dialogRef = this.dialog.open(OrderEditComponent, dialogConfig);
         this.router.events.subscribe(()=>{
             dialogRef.close();
