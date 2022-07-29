@@ -24,6 +24,7 @@ export class HeaderHomeComponent implements OnInit {
   public totalItem: number = 0;
   public hasil: any;
   public profilId: any;
+  public orderId:any;
   public responseMessage: any;
 
   constructor(
@@ -45,6 +46,7 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   profilView() {
+    this.ngxService.start();
     this.userService.checkToken().subscribe(
       (response: any) => {
         this.router.navigate(['/profil/get/' + response.id]);
@@ -61,6 +63,7 @@ export class HeaderHomeComponent implements OnInit {
         (response: any) => {
           this.hasil = response;
           this.profilId = response.id;
+          this.orderId = response.id;
           console.log(this.hasil);
         },
         (error: any) => {
@@ -88,11 +91,20 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   cartAction() {
+    this.ngxService.start();
     this.router.navigate(['/cart']);
   }
 
-  shipAction() {
-    this.router.navigate(['/order/getAll']);
+  shipActionId() {
+    this.ngxService.start();
+    this.userService.checkToken().subscribe(
+        (response: any) => {
+          this.router.navigate(['/order/get/' + response.id]);
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
   logout() {
     const dialogConfig = new MatDialogConfig();
