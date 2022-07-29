@@ -30,7 +30,7 @@
         <div class="column">
             <div class="card">
                 <div class="container">
-                    <h2 class="title">Total Item Product:</h2>
+                    <h2 class="title">Total Item:</h2>
                     <h1 class="title">{{data?.item}}</h1>
                     <p><button class="button"
                             [routerLink]="['/beautyshop/detail']">View Item
@@ -152,7 +152,7 @@
             <H2>Chart Top 5 Product</H2>
             <div class="card1">
                 <div style="display: block; padding: 30px;">
-                    <canvas baseChart width="400" height="153"
+                    <canvas baseChart width="400" height="182"
                         [datasets]="barChartDataProduct"
                         [labels]="barChartLabelsProduct"
                         [options]="barChartOptions"
@@ -190,7 +190,7 @@
                     <ng-container matColumnDef="total">
                         <th mat-header-cell *matHeaderCellDef>Total</th>
                         <td mat-cell *matCellDef="let element">
-                            {{element.total}}</td>
+                            {{element.total}} item</td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsItem;
@@ -204,7 +204,7 @@
             <H2>Chart Top 5 Product Item</H2>
             <div class="card1">
                 <div style="display: block; padding: 30px;">
-                    <canvas baseChart width="400" height="153"
+                    <canvas baseChart width="400" height="182"
                         [datasets]="barChartDataItem"
                         [labels]="barChartLabelsItem"
                         [options]="barChartOptions"

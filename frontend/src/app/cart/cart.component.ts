@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
         private router:Router) { }
 
     ngOnInit(): void {
-        this.ngxService.start
+        this.ngxService.start()
         this.cartItem()
         this.getSumVal()
 
@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
     cartItem() {
         this.cartService.getCart().subscribe((response: any) => {
             this.cartList = response.map((data: any) => {
-            
+                this.ngxService.stop()
                 if (data.itemImage){
                     data.itemImage = environment.apiUrl + '/images/upload_detail/' + data.itemImage;
                     return data;
