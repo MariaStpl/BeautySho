@@ -6,7 +6,6 @@
                 <span class="title-center">{{group.status}}</span>
             </mat-card-header>
             <mat-card-content class="content1">
-
                 <div class="data-view-container">
                     <b><span class="title-data">Customer Detail:</span></b>
                     <div class="data-view-content">
@@ -104,6 +103,11 @@
 
                 <!-- <div class="sumval"><button mat-flat-button color="primary">Total : {{item.sumVal |currency:"IDR ":"symbol"}}</button></div> -->
             </mat-card-content>
+            <hr>
+            <div class="row tracking" (click)="trackingOrder(group.receipt)" >
+                <div>View Tracking Order</div>
+                <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
+            </div>
         </mat-card>
     </ng-container>
 
@@ -112,6 +116,21 @@
             <mat-card class="card">
                 <mat-card-content class="content">
                     <img src="assets/img/empty-order.png" alt="">
+                    <h6>Your Order is empty</h6>
+                    <button class="btnn" mat-raised-button color="primary" routerLink="">Shop Now</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
+
+    <!-- <ng-container *ngIf="!hasil?.length">
+        <div class="container">
+            <mat-card class="card">
+                <mat-card-content class="content">
+                    <img src="assets/img/empty-order.png" alt="">
+                    <h6>Your Order is empty</h6>
+                    <button class="btnn" mat-raised-button color="primary" routerLink="">Shop Now</button>
+                    <h6>Or</h6>
                     <div layout="row">
                         <form [formGroup]="manageOrderForm" class="form-group">
                             <mat-form-field appearance="standard">
@@ -122,12 +141,7 @@
                         <button class="btnn" mat-raised-button color="primary" (click)="tracking()">Search</button>
                     </form>
                     </div>
-
-
-                    <!-- <h6>Your Order is empty</h6>
-                    <button class="btnn" mat-raised-button color="primary" routerLink="">Shop Now</button>
-                    <h6>Or</h6> -->
                 </mat-card-content>
             </mat-card>
         </div>
-    </ng-container>
+    </ng-container> -->

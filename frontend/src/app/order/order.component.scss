@@ -9,8 +9,8 @@
 }
 
 h6 {
-    font-weight: 800;
-    font-size: 19px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .content {
@@ -29,7 +29,7 @@ h6 {
         margin: -34px 0px;
     }
 
-    mat-form-field{
+    mat-form-field {
         width: 70%;
         padding-right: 15px;
         justify-content: center;
@@ -38,7 +38,7 @@ h6 {
     .btnn {
         font-size: 16px;
         height: 35px;
-        width: 80px;
+        width: 108px;
         justify-content: center;
     }
 }
@@ -53,26 +53,36 @@ h6 {
 
 }
 
+.arrow {}
+
+.tracking {
+    font-weight: 600;
+    padding-top: 20px;
+    float: right;
+    display: flex;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
 
 .card1 {
-    align-self:center;
+    align-self: center;
     margin: 0 auto;
-    margin-top: 100px !important;
+    margin-top: 80px !important;
     border: 1px solid rgba(0, 0, 0, 0.2);
     //border-radius: 20px;
-    overflow: auto;
-    overflow-x: auto;
-    overflow-y: auto;
-    max-height: 500px;
+
+    min-height: 420px;
     padding-bottom: 30px;
     width: 80%;
+    margin-bottom: 20px;
 
     mat-card-header {
         margin: 0 auto;
         background-color: #e53935;
         height: 42px;
         width: 100%;
-        position:static;
+        position: static;
 
         h1 {
             font-size: 18px;
@@ -88,8 +98,12 @@ h6 {
     }
 
     .content1 {
+        max-height: 250px;
         display: flex;
         margin-top: 15px;
+        overflow: auto;
+        overflow-x: auto;
+        overflow-y: auto;
     }
 
     .data-view-container {
@@ -118,6 +132,7 @@ h6 {
         width: 35%;
         box-sizing: border-box;
         padding-top: 30px;
+        padding-left: 25px;
 
         .title-product {
             font-size: 16px;

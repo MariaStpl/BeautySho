@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { LoginComponent } from '../login/login.component';
 import { CartService } from '../services/cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-order',
@@ -25,36 +26,59 @@ export class OrderComponent implements OnInit {
     itemArray: any = [];
     data: any;
     manageOrderForm: any = FormGroup;
+    hasil: any;
 
     constructor(private orderService: OrderService,
         private ngxService: NgxUiLoaderService,
         private snackbarService: SnackbarService,
         private route: ActivatedRoute,
         private router: Router,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        private userService: UserService) { }
 
     ngOnInit(): void {
+        this.ngxService.start();
         this.route.params.subscribe(params => {
             console.log(params) //log the entire params object
             console.log(params['id'])
             this.cartItem(params.id)
-        }) 
+        })
 
         this.manageOrderForm = this.formBuilder.group({
             receipt: [null, [Validators.required]]
         })
     }
 
-    tracking(){
+    trackingOrder(receipt: any) {
+        this.router.navigate(['/tracking/get/' + receipt]);
+        this.ngxService.start();
+    }
+
+    token() {
+        if (localStorage.getItem('token') != null) {
+            this.userService.checkToken().subscribe(
+                (response: any) => {
+                    this.hasil = response;
+                    console.log(this.hasil);
+                },
+                (error: any) => {
+                    console.log(error);
+                }
+            );
+        }
+    }
+
+    tracking() {
         var formData = this.manageOrderForm.value;
         var data = {
             receipt: formData.receipt,
         }
-        this.router.navigate(['/tracking/get/'+ data.receipt])
+        this.router.navigate(['/tracking/get/' + data.receipt])
     }
 
     cartItem(id: any) {
         this.orderService.get(id).subscribe((response: any) => {
+            this.ngxService.stop();
             this.orderList = response.map((data: any) => {
                 data.items.map((data: any) => {
                     if (data.itemImage) {
