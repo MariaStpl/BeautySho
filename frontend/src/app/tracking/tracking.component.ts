@@ -26,6 +26,7 @@ export class TrackingComponent implements OnInit {
         private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.ngxService.start();
         this.route.params.subscribe(params => {
             console.log(params) //log the entire params object
             console.log(params['receipt'])
@@ -36,6 +37,7 @@ export class TrackingComponent implements OnInit {
 
     viewTracking(receipt:any) {
         this.trackingService.get(receipt).subscribe((res: any) => {
+            this.ngxService.stop();
             this.track = res.map((data: any) => {
                 this.orderStatus = data.status   
                 data.items.map((data: any) => {

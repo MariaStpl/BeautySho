@@ -9,23 +9,6 @@
     </div>
 
     <mat-card *ngFor="let group of track; let i = index">
-        <div class="history">
-            <b><span class="title-tracking">Tracking Order:</span></b>
-        <div>
-                <div class="content-history" *ngFor="let history of group.hist">   
-                        <div class="timeline-wrapper"> 
-                         <ul class="StepProgress">
-                                <li class="StepProgress-item is-done">
-                                    <div class="bold time">{{history.createDate | date:'mediumDate'}}</div> 
-                                    <div class="bold">{{history.keterangan}}</div>
-                                    <div class="bold">{{history.createDate | date:'shortTime'}}</div>
-                                </li>
-                            </ul>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <!-- //<div class="garis_verikal"></div> -->
         <div>
             <div class="data-view-container">
                 <b><span class="title-data">Customer Detail:</span></b>
@@ -83,6 +66,24 @@
             </div>
 
         </div>
+        <div class="history">
+            <b><span class="title-tracking">Tracking Order:</span></b>
+        <div>
+                <div class="content-history" *ngFor="let history of group.hist">   
+                        <div class="timeline-wrapper"> 
+                         <ul class="StepProgress">
+                                <li class="StepProgress-item is-done">
+                                    <div class="bold time">{{history.createDate | date:'mediumDate'}}</div> 
+                                    <div class="bold">{{history.keterangan}}</div>
+                                    <div class="bold">{{history.createDate | date:'shortTime'}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- //<div class="garis_verikal"></div> -->
+        
         
 
     </mat-card>
