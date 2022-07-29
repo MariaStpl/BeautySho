@@ -64,7 +64,6 @@ router.get('/getProductsHome', (req, res, next) => {
     var query = "select p.id, p.name, p.description, p.price, p.image, p.status, c.id as categoryId, c.name as categoryName, c.icon as categoryIcon from product as p INNER JOIN category as c where p.categoryId = c.id";
     connection.query(query, (err, results) => {
         if (!err) {
-            console.log(results);
             return res.status(200).json(results);
         }
         else {

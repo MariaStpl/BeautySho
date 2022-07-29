@@ -10,7 +10,6 @@ router.post('/addProductsDetails', auth.authenticateToken, checkRole.checkRole, 
     var item = detail_product.item;
     var desc = detail_product.description;
     var price = detail_product.price;
-    console.log(req)
     if (!req.files)
 
         return res.status(400).send('No files were uploaded.');
@@ -74,7 +73,6 @@ router.get('/getProductsDetails', auth.authenticateToken, checkRole.checkRole, (
     var query = "select d.id, d.item, d.description, d.price as itemPrice, d.image, d.status, p.id as productId, p.name as productName, p.image as productImage from detail_product as d INNER JOIN product as p where d.productId = p.id";
     connection.query(query, (err, results) => {
         if (!err) {
-            console.log(results);
             return res.status(200).json(results);
         }
         else {

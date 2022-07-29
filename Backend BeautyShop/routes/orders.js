@@ -4,8 +4,6 @@ const router = express.Router();
 var auth = require('../services/authentication');
 var checkRole = require('../services/checkRole');
 
-// var query = "SELECT DISTINCT o.checkoutId as checkoutId, o.itemId as itemId, o.productId, o.itemPrice, o.total, o.quantity, c.name, c.email,c.contactNumber,c.paymentMethod, c.address, c.shipping_option, c.status, c.orderTime, c.shipTime, c.completedTime, d.item as itemSize,  d.price as itemPrice, d.description as itemDesc, d.image as itemImage, p.name as productName FROM (((orderCart as o INNER JOIN checkout as c ON o.checkoutId = c.id)INNER JOIN detail_product as d ON o.itemId = d.id)INNER JOIN product as p ON d.productId = p.id)";
-
 router.get('/get', (req, res, next) => {
     var order = [] ;var fullOrder = []
     var queryCheckout = "SELECT DISTINCT id as checkoutId, name, email, contactNumber, paymentMethod, address, shipping_option, status, orderTime, confirmTime, shipTime, completedTime, receipt, keterangan, createDate from checkout order by id DESC";
