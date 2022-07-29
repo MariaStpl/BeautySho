@@ -9,7 +9,7 @@
             </div>
         </div>
         <div *ngIf="notif.statusNotif === 'Unread'">
-            <div class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)"><b>{{notif.name}} {{notif.notif}}</b>
+            <div style="color:red" class="menuItems" mat-menu-item (click)="detailOrder(notif.checkoutId)"><b>{{notif.name}} {{notif.notif}}</b>
             </div>
         </div>
         
