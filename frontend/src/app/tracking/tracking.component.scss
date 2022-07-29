@@ -6,18 +6,23 @@
     }
 .title-tracking{
     padding-left: 15px;
+    
 }
+
+
 mat-card {
-    align-self: center;
     margin: 0 auto;
-    margin-top: 150px !important;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding-right: 25px;
     height: auto;
-    width: 60%;
-    display: flex;
-    padding-bottom: 80px;
+    width: 100%;
+    padding-bottom: 30px;
+    overflow: auto;
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+      
+      
 }
 
 h3 {
@@ -115,37 +120,35 @@ h3 {
     }
 }
 
+.page{
+    justify-content: center;   
+}
+
+.detail{
+    margin-top: 150px !important;
+    justify-content: center; 
+    display: flex;
+    width: 100% !important;
+    max-height: 300px;
+}
+
 .history {
-    width: 67%;
-    box-sizing: border-box;
-    padding-top: 30px;
-    padding-left: 10px;
-    font-size: 15px;
-    margin-right: 20px;
-
-
-
+    width: 40% !important;
+    display: flex;
+    margin: 0px 0px 30px 15px;
     .title-data {
-        font-size: 16px;
+        font-size: 14px;
     }
-
-
     .content-history {
         width: 100%;
         grid-column-gap: 8px;
-        padding-top: 22px;
-
     }
 }
 
 .data-view-container {
-    box-sizing: border-box;
-    padding-top: 30px;
-    padding-left: 40px;
-    font-size: 15px;
-
-
-
+    width: 40% !important;
+    margin: 0px 15px 30px 0px;
+    display: flex;
     .title-data {
         font-size: 16px;
     }
@@ -161,14 +164,12 @@ h3 {
 }
 
 .product-view-container {
-    box-sizing: border-box;
-    padding-top: 40px;
-    font-size: 15px;
-    padding-left: 30px;
-    margin-top: 30px;
-
+    width: 40%;
+    float: left !important;
+    margin-left: 150px;
+    
     .title-product {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     mat-card-content {
@@ -204,7 +205,7 @@ h3 {
 
 
             .product-name {
-                font-size: 14px;
+                font-size: 16px;
                 margin: 0 0 3px;
                 color: black;
             }
@@ -212,6 +213,7 @@ h3 {
             .product-description {
                 margin: 0 0 3px;
                 color: grey;
+                font-size: 14px;
 
 
             }
@@ -219,9 +221,7 @@ h3 {
             .product-price {
                 margin: 0 0 3px;
                 color: #e53935;
-                font-weight: bolder;
-
-
+                font-size: 14px;
             }
 
 
@@ -240,7 +240,7 @@ h3 {
 }
 
 .timeline-wrapper {
-    padding-left: 80px;
+    padding-left: 90px;
     min-width: 400px;
     font-family: 'Helvetica';
     
@@ -249,7 +249,7 @@ h3 {
 
 .StepProgress {
     position: relative;
-    padding-left: 45px;
+    padding-left: 35px;
     list-style: none;
 }
 
@@ -258,16 +258,17 @@ h3 {
     content: '';
     position: absolute;
     top: 0;
-    left: 26px;
+    left: 30px;
     width: 10px;
     height: 150%;
-    border-left: 2px solid green;
+    border-left: 2px solid #e53935;
     counter-increment: list;
 }
 
 .StepProgress-item {
     position: relative;
     counter-increment: list;
+    padding-left: 15px;
 }
 
 .StepProgress-item:not(:last-child) {
@@ -288,7 +289,7 @@ h3 {
     display: inline-block;
     position: absolute;
     top: 0;
-    left: -26px;
+    left: -12px;
     width: 12px;
     height: 12px;
     border: 2px solid #CCC;
@@ -302,8 +303,8 @@ h3 {
     font-size: 10px;
     color: #FFF;
     text-align: center;
-    border: 2px solid green;
-    background-color: green;
+    border: 2px solid #e53935;
+    background-color: #e53935;
 }
 
 .StepProgress strong {
